@@ -5,7 +5,10 @@ async function searchBySymbol(query, apiKey) {
     const res = await fetch(url, {
         method: 'GET',
     });
-    return res.json();
+    if (res.ok) {
+        return res.json();
+    }
+    throw `[Error]: ${res.status} from finnhub api: ${url}`;
 }
 
 async function getStocks(exchange = 'US', mic = 'XNYS', apiKey) {
@@ -18,7 +21,7 @@ async function getStocks(exchange = 'US', mic = 'XNYS', apiKey) {
     } else {
         console.log(res.status);
     }
-    throw "error from finnhub api";
+    throw `[Error]: ${res.status} from finnhub api: ${url}`;
 }
 
 async function getCompanyPeers(symbol, grouping, apiKey) {
@@ -43,9 +46,46 @@ async function getMarketNews(category, apiKey) {
     throw `[Error]: ${res.status} from finnhub api: ${url}`;
 }
 
+async function getQuote(symbol, apiKey) {
+    const url = `${base_url}/quote?symbol=${symbol}&token=${apiKey}`;
+    let res = await fetch(url, {
+        method: 'GET',
+    });
+    if (res.ok) {
+        return res.json();
+    }
+    throw `[Error]: ${res.status} from finnhub api: ${url}`;
+
+}
+
+async function getCryptoExchanges(apiKey) {
+    const url = `${base_url}/crypto/exchange&token=${apiKey}`;
+    let res = await fetch(url, {
+        method: 'GET',
+    });
+    if (res.ok) {
+        return res.json();
+    }
+    throw `[Error]: ${res.status} from finnhub api: ${url}`;
+}
+
+async function getCryptoSymbols(exchange = 'binance', apiKey) {
+    const url = `${base_url}/crypto/symbol?exchange=${exchange}&token=${apiKey}`;
+    let res = await fetch(url, {
+        method: 'GET',
+    });
+    if (res.ok) {
+        return res.json();
+    }
+    throw `[Error]: ${res.status} from finnhub api: ${url}`;
+}
+
 module.exports = {
     searchBySymbol,
     getStocks,
     getCompanyPeers,
-    getMarketNews
+    getMarketNews,
+    getQuote,
+    getCryptoExchanges,
+    getCryptoSymbols,
 }

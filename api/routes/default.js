@@ -15,7 +15,7 @@ default_router.post("/", (req, res) => {
     res.send('ok')
 });
 
-const market_routes = require('./market.router');
-default_router.use("/market", market_routes);
+const market_router = require('./market/market.router');
+default_router.use("/market", market_router);
 
 module.exports = default_router;

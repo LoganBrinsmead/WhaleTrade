@@ -17,8 +17,8 @@ export function subscribeToSymbols(symbols, apiKey) {
 
     socket.on('message', (data) => {
         // do something with these trade events
-        // console.log('trade event: ', JSON.parse(data.toString()));
-        parentPort.postMessage((JSON).parse(data.toString()));
+        console.log('trade event: ', JSON.parse(data.toString()));
+        // parentPort.postMessage((JSON).parse(data.toString()));
     })
 
     return socket;
