@@ -1,5 +1,4 @@
 require('dotenv').config();
-const { worker } = require('worker_threads');
 const express = require('express');
 
 
