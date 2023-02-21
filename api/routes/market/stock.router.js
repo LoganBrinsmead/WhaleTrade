@@ -8,8 +8,19 @@ const apiKey = process.env.FINNHUBAPIKEY;
 const stock_router = express.Router({mergeParams: true});
 
 
-stock_router.get('/', (req, res) => {
-    finnhub_api.getStocks("US", "XNYS", apiKey)
+// return a static list of available exchanges supported by finnhub
+stock_router.get('/list/exchanges', (req, res) => {
+    res.sendStatus(200);
+});
+
+// return a static list of available mics supported by finnhub
+stock_router.get('/list/mics', (req, res) => {
+    res.sendStatus(200);
+});
+
+stock_router.get('/exchange=:exchange&mic=:mic', (req, res) => {
+    const { exchange, mic } = req.params;
+    finnhub_api.getStocks(exchange, mic, apiKey)
     .then( (data) => {
         res.status(200).json(data);
     }).catch( (error) => {
@@ -60,5 +71,7 @@ stock_router.get('/quote?:symbol', (req, res) => {
         res.status(400).send(error);
     });
 })
+
+
 
 module.exports = stock_router;
