@@ -1,4 +1,5 @@
 require('dotenv').config();
+const { worker } = require('worker_threads');
 const express = require('express');
 
 
@@ -8,7 +9,6 @@ const PORT = process.env.PORT;
 const app = express();
 
 app.use(express.json());
-
 
 // log incoming requests
 app.use((req, res, next) => {
