@@ -70,8 +70,18 @@ stock_router.get('/quote?:symbol', (req, res) => {
         console.log(error);
         res.status(400).send(error);
     });
-})
+});
 
+stock_router.get('/recommend?:symbol', (req, res) => {
+    const symbol = req.params.symbol;
+    finnhub_api.getTrend(symbol, apiKey)
+    .then( (data) => {
+       res.status(200).json(data);
+    }).catch( (error) => {
+        console.log(error);
+        res.status(400).send(error)
+    });
+});
 
 
 module.exports = stock_router;
