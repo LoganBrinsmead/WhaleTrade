@@ -12,7 +12,7 @@ async function searchBySymbol(query, apiKey) {
 }
 
 async function getStocks(exchange = 'US', mic = 'XNYS', apiKey) {
-    const url = `${base_url}/stock/symbol?exchange=${exchange}&token=${apiKey}`;
+    const url = `${base_url}/stock/symbol?exchange=${exchange}&mic=${mic}&currency=USD&token=${apiKey}`;
     let res = await fetch(url, {
         method: 'GET',
     });
@@ -55,7 +55,17 @@ async function getQuote(symbol, apiKey) {
         return res.json();
     }
     throw `[Error]: ${res.status} from finnhub api: ${url}`;
+}
 
+async function getTrend(symbol, apiKey) {
+    const url = `${base_url}/stock/recommendation?symbol=${symbol}&token=${apiKey}`;
+    let res = await fetch(url, {
+        method: 'GET',
+    });
+    if (res.ok) {
+        return res.json();
+    }
+    throw `[Error]: ${res.status} from finnhub api: ${url}`;
 }
 
 async function getCryptoExchanges(apiKey) {
@@ -86,6 +96,7 @@ module.exports = {
     getCompanyPeers,
     getMarketNews,
     getQuote,
+    getTrend,
     getCryptoExchanges,
     getCryptoSymbols,
 }
