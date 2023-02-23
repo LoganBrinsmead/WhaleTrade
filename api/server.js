@@ -10,10 +10,7 @@ mongoose.set('strictQuery', false);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-console.log("name: ", process.env.NAME);
-console.log("pw: ", process.env.PW);
-
-const MONGOURI = `mongodb+srv://${process.env.NAME}:${process.env.PASSWORD}@whalecluster.bcd7wzc.mongodb.net/?retryWrites=true&w=majority`;
+const MONGOURI = process.env.URI;
 const PORT = process.env.PORT;
 
 
@@ -34,7 +31,6 @@ app.use((req, res, next) => {
 
 // import routes
 const routes = require('./routes/default');
-const authRouter = require('./routes/auth');
 app.use("/api/v1", routes);
 
 

@@ -3,9 +3,7 @@ const authRouter = express.Router();
 const bcrypt = require('bcryptjs');
 const User = require("../schema/User");
 
-// router to register a user's account
 const salt = 10;
-
 authRouter.post("/register", async (req, res) => {
     console.log(req.body);
     try {
