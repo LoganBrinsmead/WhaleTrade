@@ -1,4 +1,5 @@
 const express = require('express');
+const auth = require("./auth");
 
 const app = express();
 
@@ -16,6 +17,6 @@ default_router.post("/posttest", (req, res) => {
     res.send('ok')
 });
 
-default_router.use(authRouter);
+default_router.use("/auth", authRouter);
 
 module.exports = default_router;

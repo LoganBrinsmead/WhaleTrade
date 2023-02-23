@@ -36,7 +36,6 @@ app.use((req, res, next) => {
 const routes = require('./routes/default');
 const authRouter = require('./routes/auth');
 app.use("/api/v1", routes);
-app.use('/api/auth', authRouter)
 
 
 // start api
