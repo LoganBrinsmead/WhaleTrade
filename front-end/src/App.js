@@ -1,6 +1,5 @@
 import React from 'react';
-
-
+import CandlestickChart from './charts/CandlestickChart';
 
 function hello () {
   return (
@@ -11,4 +10,16 @@ function hello () {
   )
 }
 
-export default hello
+// FOR TESTING: visualizing the test chart.
+function chart () {
+  return (
+    <div>
+      <h1>Welcome to Whale Trade</h1>
+      <div>
+        <CandlestickChart/>
+      </div>
+    </div>
+  )
+}
+
+export default chart
