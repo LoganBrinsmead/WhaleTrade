@@ -9,7 +9,6 @@ const app = express();
 
 app.use(express.json());
 
-
 // log incoming requests
 app.use((req, res, next) => {
     console.log(`[${req.method}] - ${req.url}`);
