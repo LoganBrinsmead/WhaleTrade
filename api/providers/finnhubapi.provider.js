@@ -57,6 +57,17 @@ async function getQuote(symbol, apiKey) {
     throw `[Error]: ${res.status} from finnhub api: ${url}`;
 }
 
+async function getStockCandles(symbol, resolution, from, to, apiKey) {
+    const url = `${base_url}/stock/candle?symbol=${symbol}&resolution=${resolution}&from=${from}&to=${to}&token=${apiKey}`;
+    let res = await fetch(url, {
+        method: 'GET',
+    });
+    if (res.ok) {
+        return res.json();
+    }
+    throw `[Error]: ${res.status} from finnhub api: ${url}`;
+}
+
 async function getTrend(symbol, apiKey) {
     const url = `${base_url}/stock/recommendation?symbol=${symbol}&token=${apiKey}`;
     let res = await fetch(url, {
@@ -96,6 +107,7 @@ module.exports = {
     getCompanyPeers,
     getMarketNews,
     getQuote,
+    getStockCandles,
     getTrend,
     getCryptoExchanges,
     getCryptoSymbols,

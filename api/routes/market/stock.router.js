@@ -80,8 +80,23 @@ stock_router.get('/recommend?:symbol', (req, res) => {
        res.status(200).json(data);
     }).catch( (error) => {
         console.log(error);
-        res.status(400).send(error)
+        res.status(400).send(error);
     });
+});
+
+stock_router.post('/candlestick', (req, res) => {
+   const body = JSON.parse(req.body);
+   finnhub_api.getStockCandles(
+       body['symbol'],
+       body['resolution'],
+       body['from'],
+       body['to']
+   ).then( (data) => {
+       res.status(200).json(data);
+   }).catch( (error) => {
+       console.log(error);
+       res.status(400).send(error);
+   })
 });
 
 
