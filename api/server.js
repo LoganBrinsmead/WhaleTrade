@@ -1,8 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 
-
-const MONGOURI = process.env.MONGOURI;
 const PORT = process.env.PORT;
 
 const app = express();

@@ -9,3 +9,17 @@ market_router.use("/stocks", stock_routes);
 market_router.use("/crypto", crypto_routes);
 
 module.exports = market_router;
+
+/**
+ * @swagger
+ * tags:
+ *  name: Market
+ *  description: Finnhub market data
+ */
+
+/**
+ * @swagger
+ * tags:
+ *  name: Crypto
+ *  description: Finnhub market (crypto) data
+ */

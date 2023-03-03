@@ -15,6 +15,10 @@ default_router.post("/", (req, res) => {
 });
 
 const market_router = require('./market/market.router');
+const docs_router = require('./docs.router');
+
 default_router.use("/market", market_router);
+// skip if development env var is false
+default_router.use("/docs", docs_router);
 
 module.exports = default_router;
