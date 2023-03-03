@@ -27,3 +27,22 @@ crypto_router.get('/symbols&exchange=:exchange', (req, res) => {
 })
 
 module.exports = crypto_router;
+
+/**
+ * @swagger
+ * /market/crypto/exchanges:
+ *  get:
+ *      summary: returns a list of valid crypto exchanges
+ *      tags: [Crypto]
+ *
+ * /market/crypto/symbols&exchange={exchange}:
+ *  get:
+ *      summary: return a list of available crypto symbols by exchange
+ *      tags: [Crypto]
+ *      parameters:
+ *          - in: path
+ *            name: exchange
+ *            schema:
+ *              type: string
+ *            description: name  of crypto exchange
+ */

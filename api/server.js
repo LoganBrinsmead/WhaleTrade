@@ -1,25 +1,11 @@
 require('dotenv').config();
 const express = require('express');
 
-const swaggerUi = require('swagger-ui-express');
-const swaggerJsdoc = require('swagger-jsdoc');
-
 const PORT = process.env.PORT;
 
-const options = require('./routes/docs.router');
-
-
 const app = express();
-const specs = swaggerJsdoc(options);
 
 app.use(express.json());
-
-// api documentation
-app.use(
-    "/api-docs",
-    swaggerUi.serve,
-    swaggerUi.setup(specs, {explorer: true})
-);
 
 // log incoming requests
 app.use((req, res, next) => {

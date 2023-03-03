@@ -1,32 +1,16 @@
-// const express = require('express');
-// const swaggerJsdoc = require('swagger-jsdoc');
-// const swaggerUi = require('swagger-ui-express');
+const express = require('express');
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDefinition = require('../docs/swaggerDef');
 
-const options = {
-    definition: {
-        openapi: "3.0.0",
-        info: {
-            title: "Whale Trade API docs",
-            version: "0.1.0",
-            description:
-                "",
-            license: {
-                name: "",
-                url: "",
-            },
-            contact: {
-                name: "WhaleTrader",
-                url: "",
-                email: "",
-            },
-        },
-        servers: [
-            {
-                url: `http://localhost:9000/api/v1`,
-            },
-        ],
-    },
-    apis: ['./market/*.router.js']
-};
+const docsRouter = express.Router();
 
-module.exports = options;
+const specs = swaggerJsdoc({
+    swaggerDefinition,
+    apis: ['./routes/*.js', './routes/market/*.js'],
+});
+
+docsRouter.use('/', swaggerUi.serve);
+docsRouter.get('/', swaggerUi.setup(specs, { explorer: true }));
+
+module.exports = docsRouter;
