@@ -1,8 +1,10 @@
-name: Node.js backend CI
+name: WhaleTrade backend API tests
 
 on:
   push:
-    branches: [ anthonyM ]
+    branches: ['*']
+  pull_request:
+    branches: [ dev,main ]
 
 jobs:
   build:
