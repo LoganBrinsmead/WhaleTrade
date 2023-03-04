@@ -5,13 +5,16 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha ./test/test.*.js --exit"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "mocha": "^10.2.0",
     "mongodb": "^5.0.1",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^4.6.1",
