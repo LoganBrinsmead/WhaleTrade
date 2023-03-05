@@ -1,4 +1,5 @@
 const express = require('express');
+const authRouter = require('./auth');
 
 const default_router = express.Router();
 

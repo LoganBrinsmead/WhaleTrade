@@ -21,12 +21,14 @@ authRouter.post("/register", async (req, res) => {
 
 authRouter.post("/login", async (req, res) => {
     try {
+        const session = req.session;
         const user = await User.findOne({ username: req.body.username });
         console.log(user);
         if (user) {
             const cmp = await bcrypt.compare(req.body.password, User.password);
             if (cmp) {
-                //   TODO: More code needs to be added here to maintain authentication, i.e JWT or sessions with a tech like Redis
+                session.username = req.body.username;
+                session.password = req.body.password;
                 res.send("Auth Successful");
             } else {
                 res.send("Wrong username or password.");
@@ -38,6 +40,16 @@ authRouter.post("/login", async (req, res) => {
         console.log(error);
         res.status(500).send("Internal Server error Occured");
     }
+})
+
+// logout route (removes the user from the session store in Redis)
+authRouter.get("logout", (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            return console.log("There was an error logging out, " + err);
+        }
+        res.redirect("/login");
+    })
 })
 
 module.exports = authRouter;
