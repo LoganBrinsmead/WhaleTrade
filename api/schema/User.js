@@ -1,9 +1,13 @@
 const mongoose = require("mongoose");
 
 const portfolioSchema = new mongoose.Schema({
-    stocks: [],
-    crypto: [],
-    options: []
+    stocks: [String],
+    crypto: [String],
+    options: [String],
+    balance: {
+        type: String,
+        required: true
+    }
 })
 
 const userSchema = new mongoose.Schema({
@@ -16,7 +20,9 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    portfolio: portfolioSchema,
+    portfolios: [portfolioSchema],
+    followers: [userSchema],
+    follows: [userSchema]
 })
 
 module.exports = mongoose.model("User", userSchema);
