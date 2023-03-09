@@ -19,7 +19,7 @@ function chart () {
         <CandlestickChart
           type="candlestick" 
           height={650}
-          stockSymbol="appl" 
+          stockSymbol="APPL" 
         />
       </div>
     </div>

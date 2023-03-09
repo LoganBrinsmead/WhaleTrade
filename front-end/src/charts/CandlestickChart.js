@@ -6,17 +6,30 @@ const Data = require('./DemoData.json');
 class CandlestickChart extends Component {
     constructor(props) {
         super(props);
-        console.log(this.props.stockSymbol);
-        // get data from api for specific symbol.
-        // parse data to readable format for apexcharts.
+        // Get data for current day with 1 min resolution.
+        const currentDate_mili = new Date(Date.now())
+        const [
+          hourUnix_mili, 
+          minutesUnix_mili, 
+          secUnix_mili
+        ] = [
+          currentDate_mili.getHours() * 3600 * 1000,
+          currentDate_mili.getMinutes() * 60 *1000,
+          currentDate_mili.getSeconds() * 1000
+        ]
+        const partialDayUnix_mili = hourUnix_mili + minutesUnix_mili + secUnix_mili;
+        const endDate_mili = currentDate_mili - partialDayUnix_mili;
+        // *Will be called twice due to React.
+        this.chartData = this.getDataFromAPI(this.props.stockSymbol, "1", Date.now(), endDate_mili);
 
         this.state = {
           series: [
             {
             name: 'candle',
             type: 'candlestick',
-            data: this.getDataCandlestick() 
+            data: this.getDataCandlestick(this.chartData) 
           },
+          /*
           {
             name: 'line',
             type: 'line',
@@ -36,6 +49,7 @@ class CandlestickChart extends Component {
               }
             ]
           }
+          */
         ],
           options: {
             chart: {
@@ -89,47 +103,120 @@ class CandlestickChart extends Component {
           }
         };
       }
-            
-      displayCandlestickChart = () => {
+      
+      /************************************************************************ */
+      /**finnhub.io API */
+      /************************************************************************ */
+      
+      getDataFromAPI = (symbol, resolution, from, to) => {
+        console.log('In getDataFromAPI: ', symbol, resolution, from, to);        
+        /*
+        fetch('http://localhost:5000/api/v1/market/stocks/list/exchanges')
+          .then(res => res.json())
+          .then(data => console.log(data));
+        */
+        // Placeholder for API.
+        // Fetched data goes here.
+        const dataFromAPI = {
+          "c": [
+            217.68,
+            221.03,
+            219.89
+          ],
+          "h": [
+            222.49,
+            221.5,
+            220.94
+          ],
+          "l": [
+            217.19,
+            217.1402,
+            218.83
+          ],
+          "o": [
+            221.03,
+            218.55,
+            220
+          ],
+          "s": "ok",
+          "t": [
+            1569297600,
+            1569384000,
+            1569470400
+          ],
+          "v": [
+            33463820,
+            24018876,
+            20730608
+          ]
+        };
+
+        let parsedData = [];
+        for (var i = 0; i < dataFromAPI['t'].length; i++){
+          // Convert UNIX timestamp from sec to milisec precision for Apexcharts.
+          parsedData.push(
+            {
+              "date": dataFromAPI['t'][i] * 1000,
+              "open": dataFromAPI['o'][i],
+              "high": dataFromAPI['h'][i],
+              "low": dataFromAPI['l'][i],
+              "close": dataFromAPI['c'][i],
+              "volume": dataFromAPI['v'][i]
+            }
+          );
+        }
+        //console.log(parsedData);
+        return parsedData;
+      }
+                
+      /************************************************************************ */
+      /**Candlestick, Line, Area Charts */
+      /************************************************************************ */
+        
+      displayCandlestickChart = (chartData) => {
         console.log('displaying candlestick chart');
         this.setState({
           series: [
-            this.createCandlestickObject()
+            {
+              name: 'Candle',
+              type: 'candlestick',
+              data: this.getDataCandlestick(chartData)
+            }
           ]
         })
       }
 
-      displayLineChart = () => {
+      displayLineChart = (chartData) => {
         console.log('Displaying line chart');
         this.setState({
           series: [
-            this.createLineObject() 
+            {
+              name: 'Close',
+              type: 'line',
+              data: this.getData(chartData)
+            } 
           ]
         })
       }
 
-      displayAreaChart = () => {
+      displayAreaChart = (chartData) => {
         console.log('Displaying area chart');
         this.setState({
           series: [
-            this.createAreaObject() 
+            {
+              name: 'Close',
+              type: 'area',
+              data: this.getData(chartData) 
+            } 
           ]
         })
       }
       
-      createCandlestickObject = () => {
-        return {
-          name: 'Candle',
-          type: 'candlestick',
-          data: this.getDataCandlestick()
-        };
-      }
-
-      getDataCandlestick = () => {
+      getDataCandlestick = (chartData) => {
         // Get dates
-        const dates = Data.map(obj => obj['date']);
+        const dates = chartData.map(obj => obj['date']);
         // Get array of prices: open, close, high, low 
-        const prices = Data.map(obj => {
+        const prices = chartData.map(obj => {
           return [
             obj['open'], 
             obj['high'], 
@@ -141,40 +228,17 @@ class CandlestickChart extends Component {
         let data = [];
         // X coord take precesdence over y.
         for (let i = 0; i < dates.length; i++){
-          data.push(this.dataObjectCandlestick(dates[i], prices[i]));
+          data.push(this.dataObject(dates[i], prices[i]));
         }
 
         return data;
       }
 
-      dataObjectCandlestick = (date, prices) => {
-        return {
-          x: new Date(date),
-          y: prices
-        }
-      }
-
-      createLineObject = () => {
-        return {
-          name: 'Close',
-          type: 'line',
-          data: this.getData()
-        }
-      }
-
-      createAreaObject = () => {
-        return {
-          name: 'Close',
-          type: 'area',
-          data: this.getData() 
-        };
-      }
-
-      getData = () => {
+      getData = (chartData) => {
         // Get date.
-        const dates = Data.map(obj => obj['date']);
+        const dates = chartData.map(obj => obj['date']);
         // Get closing prices.
-        const prices = Data.map(obj => obj['close'])
+        const prices = chartData.map(obj => obj['close'])
         // Data array.
         let data = [];
         // Number dates match number of prices.
@@ -191,15 +255,18 @@ class CandlestickChart extends Component {
           y: price
         }
       }
-
+            
+      /************************************************************************ */
+      /**Change time interval */
+      /************************************************************************ */
+      
       updateData = (timeline) => {
         // Get recent date.
         // Subtract specific time from date to get end date.
         // Get data between recent and end.
 
         // UNIX timestamp in miliseconds
-        // *Remove value in new Date() after implementing api.
-        const currentDate_mili = new Date(1538884800000);
+        const currentDate_mili = new Date(Date.now());
         // Doesn't account for leap year.
         const [year, month, day] = [
           currentDate_mili.getFullYear(),          
@@ -223,32 +290,14 @@ class CandlestickChart extends Component {
             console.log('switch one day');
             endDate_mili = currentDate_mili - partialDayUnix_mili;
             console.log(endDate_mili);
-
-            this.setState({
-              series: [
-                {
-                  name: this.state.series[0]['name'],
-                  type: this.state.series[0]['type'],
-                  data: this.getDataStartingFrom(endDate_mili)
-                }
-              ]
-            })
+            this.setStateForUpdate(endDate_mili);
             break
           case 'five_days':
             console.log('switch five days');
             const fourFullDaysUnix_mili = 4 * 86400 * 1000;
             endDate_mili = currentDate_mili - fourFullDaysUnix_mili - partialDayUnix_mili;
             console.log(endDate_mili);
-                        
-            this.setState({
-              series: [
-                {
-                  name: this.state.series[0]['name'],
-                  type: this.state.series[0]['type'],
-                  data: this.getDataStartingFrom(endDate_mili)
-                }
-              ]
-            }) 
+            this.setStateForUpdate(endDate_mili);
             break
           case 'one_month':
             // 1 Month (30.44 days) is 2629743 Seconds.
@@ -257,136 +306,79 @@ class CandlestickChart extends Component {
             const oneMonthOffsetedUnix_mili = 2629743 * 1000 - 86400 * 1000;
             endDate_mili = currentDate_mili - oneMonthOffsetedUnix_mili - partialDayUnix_mili; 
             console.log(endDate_mili);
-                        
-            this.setState({
-              series: [
-                {
-                  name: this.state.series[0]['name'],
-                  type: this.state.series[0]['type'],
-                  data: this.getDataStartingFrom(endDate_mili)
-                }
-              ]
-            })
+            this.setStateForUpdate(endDate_mili);
             break
           case 'three_months':
             console.log('switch three months');
             const threeMonthsOffsetedUnix_mili = 3 * 2629743 * 1000 - 86400 * 1000;
             endDate_mili = currentDate_mili - threeMonthsOffsetedUnix_mili - partialDayUnix_mili; 
             console.log(endDate_mili);
-                        
-            this.setState({
-              series: [
-                {
-                  name: this.state.series[0]['name'],
-                  type: this.state.series[0]['type'],
-                  data: this.getDataStartingFrom(endDate_mili)
-                }
-              ]
-            })
+            this.setStateForUpdate(endDate_mili);
             break
           case 'six_months':
             console.log('switch six months');
             const sixMonthsOffsetedUnix_mili = 6 * 2629743 * 1000 - 86400 * 1000;
             endDate_mili = currentDate_mili - sixMonthsOffsetedUnix_mili - partialDayUnix_mili; 
             console.log(endDate_mili);
-            
-            this.setState({
-              series: [
-                {
-                  name: this.state.series[0]['name'],
-                  type: this.state.series[0]['type'],
-                  data: this.getDataStartingFrom(endDate_mili)
-                }
-              ]
-            })
+            this.setStateForUpdate(endDate_mili);
             break
           case 'YTD':
             console.log('switch year-to-day');
             const YTDOffsetedUnix_mili = month * 2629743 * 1000 - 86400 * 1000;
             endDate_mili = currentDate_mili - YTDOffsetedUnix_mili - partialDayUnix_mili;
             console.log(endDate_mili);
-
-            this.setState({
-              series: [
-                {
-                  name: this.state.series[0]['name'],
-                  type: this.state.series[0]['type'],
-                  data: this.getDataStartingFrom(endDate_mili)
-                }
-              ]
-            })
+            this.setStateForUpdate(endDate_mili);
             break
           case 'one_year':
             console.log('switch one year');
             const yearOffsetedUnix_mili = 31556926 * 1000 - 86400 * 1000;
             endDate_mili = currentDate_mili - yearOffsetedUnix_mili - partialDayUnix_mili;
             console.log(endDate_mili);
-                        
-            this.setState({
-              series: [
-                {
-                  name: this.state.series[0]['name'],
-                  type: this.state.series[0]['type'],
-                  data: this.getDataStartingFrom(endDate_mili)
-                }
-              ]
-            })
+            this.setStateForUpdate(endDate_mili);
             break
           case 'two_years':
             console.log('switch two years');
             const twoYearsOffsetedUnix_mili = 2 * 31556926 * 1000 - 86400 * 1000;
             endDate_mili = currentDate_mili - twoYearsOffsetedUnix_mili - partialDayUnix_mili;
             console.log(endDate_mili);
-                        
-            this.setState({
-              series: [
-                {
-                  name: this.state.series[0]['name'],
-                  type: this.state.series[0]['type'],
-                  data: this.getDataStartingFrom(endDate_mili)
-                }
-              ]
-            })
+            this.setStateForUpdate(endDate_mili);
             break
           case 'five_years':
             console.log('switch five years');
             const fiveYearsOffsetedUnix_mili = 5 * 31556926 * 1000 - 86400 * 1000;
             endDate_mili = currentDate_mili - fiveYearsOffsetedUnix_mili - partialDayUnix_mili;
             console.log(endDate_mili);
-                        
-            this.setState({
-              series: [
-                {
-                  name: this.state.series[0]['name'],
-                  type: this.state.series[0]['type'],
-                  data: this.getDataStartingFrom(endDate_mili)
-                }
-              ]
-            })
+            this.setStateForUpdate(endDate_mili);
             break
           case 'all':
             console.log('switch all');
             // beginnign of UNIX epoch: Januray 1, 1970.
             endDate_mili = 0;
             console.log(endDate_mili);
-                        
-            this.setState({
-              series: [
-                {
-                  name: this.state.series[0]['name'],
-                  type: this.state.series[0]['type'],
-                  data: this.getDataStartingFrom(endDate_mili)
-                }
-              ]
-            })
+            this.setStateForUpdate(endDate_mili);
             break
             default:
         }
       }
 
-      getDataStartingFrom = (endDate) => {
+      setStateForUpdate = (endDate_mili) => {
+        this.setState({
+          series: [
+            {
+              name: this.state.series[0]['name'],
+              type: this.state.series[0]['type'],
+              data: this.getDataStartingFrom(endDate_mili)
+            }
+          ]
+        })
+      }
+
+      getDataStartingFrom = (endDate_mili) => {
+        // Convert UNIX timestamp from milisec to second precision for finnhub.
+        const endDate_sec = endDate_mili / 1000;
+        const parsedData = this.getDataFromAPI(this.props.stockSymbol, Date.now(), endDate_sec);
         // Get date.
-        const objectsInInterval = Data.filter(obj => obj['date'] >= endDate);
+        const objectsInInterval = parsedData.filter(obj => obj['date'] >= endDate_mili);
         // Get array of objects containing x: date, y: price(s).
         let data;
         if (this.state.series[0]['type'] === 'candlestick'){
@@ -404,7 +396,6 @@ class CandlestickChart extends Component {
           console.log('not candlestick');
           data = objectsInInterval.map(obj => this.dataObject(obj['date'], obj['close']));
         }
-        //console.log(data);
         return data;
       }
 
@@ -427,9 +418,9 @@ class CandlestickChart extends Component {
                 type={this.props.type}
                 height={this.props.height}
             />
-            <button onClick={this.displayCandlestickChart}>Candlestick</button>
-            <button onClick={this.displayLineChart}>Line</button>
-            <button onClick={this.displayAreaChart}>Area</button>
+            <button onClick={()=>this.displayCandlestickChart(this.chartData)}>Candlestick</button>
+            <button onClick={()=>this.displayLineChart(this.chartData)}>Line</button>
+            <button onClick={()=>this.displayAreaChart(this.chartData)}>Area</button>
           </div>
         );
     }
