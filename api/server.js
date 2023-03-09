@@ -23,3 +23,6 @@ app.use("/api/v1", routes);
 app.listen(PORT, () => {
     console.log(`Starting server on port: ${PORT}`);
 });
+
+
+module.exports = app;

@@ -3,9 +3,7 @@ const express = require('express');
 const default_router = express.Router();
 
 default_router.get("/", (req, res) => {    
-    res.sendStatus(200).json({
-        version: "1.0.0",
-    });
+    res.sendStatus(200);
 });
 
 default_router.post("/", (req, res) => {
