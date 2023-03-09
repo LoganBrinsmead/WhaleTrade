@@ -411,7 +411,16 @@ class CandlestickChart extends Component {
             <button onClick={()=>this.updateData('one_year')}>1Y</button>
             <button onClick={()=>this.updateData('two_years')}>2Y</button>
             <button onClick={()=>this.updateData('five_years')}>5Y</button>
-            <button onClick={()=>this.updateData('all')}>All</button> 
+            <button onClick={()=>this.updateData('all')}>All</button>
+            <button></button>
+            <button>1 min</button>
+            <button>5 mins</button>
+            <button>15 mins</button>
+            <button>30 mins</button>
+            <button>1 hour</button>
+            <button>1 day</button>
+            <button>1 week</button>
+            <button>1 month</button>
             <Chart 
                 options={this.state.options} 
                 series={this.state.series} 
