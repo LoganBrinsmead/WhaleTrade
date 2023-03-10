@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Chart from 'react-apexcharts';
 import dayjs from 'dayjs';
-const Data = require('./DemoData.json');
+//import fetch from 'node-fetch';
 
 class CandlestickChart extends Component {
     constructor(props) {
@@ -112,11 +112,20 @@ class CandlestickChart extends Component {
       
       getDataFromAPI = (symbol, resolution, from, to) => {
         console.log('In getDataFromAPI: ', symbol, resolution, from, to);        
-        /*
-        fetch('http://localhost:5000/api/v1/market/stocks/list/exchanges')
+      
+        fetch('http://localhost:5000/api/v1/market/stocks/candlestick', {
+          method: 'POST',
+          body: {
+            "symbol": "APPL",
+            "resolution": "D",
+            "from": "1590988249",
+            "to": "1591852249"
+          }
+        })
           .then(res => res.json())
-          .then(data => console.log(data));
-        */
+          .then(data => console.log(data))
+          .catch(error => console.log(error));
+        
         // Placeholder for API.
         // Fetched data goes here.
         const dataFromAPI = {
