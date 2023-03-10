@@ -1,14 +1,15 @@
 import React from 'react';
+import Header from './component/Header'
 
 
 
-function hello () {
+function App () {
   return (
     <div>
-      <h1>Welcome to Whale Trade</h1>
+          <Header />
       
     </div>
   )
 }
 
-export default hello
+export default App
