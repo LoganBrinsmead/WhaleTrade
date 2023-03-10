@@ -22,6 +22,8 @@ class CandlestickChart extends Component {
         // *Will be called twice due to React.
         this.chartData = this.getDataFromAPI(this.props.stockSymbol, "1", Date.now(), endDate_mili);
 
+        this.currentTimeline = 'one_day';
+
         this.state = {
           series: [
             {
@@ -260,10 +262,11 @@ class CandlestickChart extends Component {
       /**Change time interval */
       /************************************************************************ */
       
-      updateData = (timeline) => {
-        // Get recent date.
-        // Subtract specific time from date to get end date.
-        // Get data between recent and end.
+      updateData = (timeline, resolution) => {
+        //console.log(resolution === undefined ? "*undefined" : "*defined");
+        //console.log(timeline);
+        // Save current timeline
+        this.currentTimeline = timeline;
 
         // UNIX timestamp in miliseconds
         const currentDate_mili = new Date(Date.now());
@@ -290,14 +293,14 @@ class CandlestickChart extends Component {
             console.log('switch one day');
             endDate_mili = currentDate_mili - partialDayUnix_mili;
             console.log(endDate_mili);
-            this.setStateForUpdate(endDate_mili);
+            this.setStateForUpdate(endDate_mili, resolution === undefined ? "1" : resolution);
             break
           case 'five_days':
             console.log('switch five days');
             const fourFullDaysUnix_mili = 4 * 86400 * 1000;
             endDate_mili = currentDate_mili - fourFullDaysUnix_mili - partialDayUnix_mili;
             console.log(endDate_mili);
-            this.setStateForUpdate(endDate_mili);
+            this.setStateForUpdate(endDate_mili, resolution === undefined ? "5" : resolution);
             break
           case 'one_month':
             // 1 Month (30.44 days) is 2629743 Seconds.
@@ -306,77 +309,82 @@ class CandlestickChart extends Component {
             const oneMonthOffsetedUnix_mili = 2629743 * 1000 - 86400 * 1000;
             endDate_mili = currentDate_mili - oneMonthOffsetedUnix_mili - partialDayUnix_mili; 
             console.log(endDate_mili);
-            this.setStateForUpdate(endDate_mili);
+            this.setStateForUpdate(endDate_mili, resolution === undefined ? "D" : resolution);
             break
           case 'three_months':
             console.log('switch three months');
             const threeMonthsOffsetedUnix_mili = 3 * 2629743 * 1000 - 86400 * 1000;
             endDate_mili = currentDate_mili - threeMonthsOffsetedUnix_mili - partialDayUnix_mili; 
             console.log(endDate_mili);
-            this.setStateForUpdate(endDate_mili);
+            this.setStateForUpdate(endDate_mili, resolution === undefined ? "D" : resolution);
             break
           case 'six_months':
             console.log('switch six months');
             const sixMonthsOffsetedUnix_mili = 6 * 2629743 * 1000 - 86400 * 1000;
             endDate_mili = currentDate_mili - sixMonthsOffsetedUnix_mili - partialDayUnix_mili; 
             console.log(endDate_mili);
-            this.setStateForUpdate(endDate_mili);
+            this.setStateForUpdate(endDate_mili, resolution === undefined ? "D" : resolution);
             break
           case 'YTD':
             console.log('switch year-to-day');
             const YTDOffsetedUnix_mili = month * 2629743 * 1000 - 86400 * 1000;
             endDate_mili = currentDate_mili - YTDOffsetedUnix_mili - partialDayUnix_mili;
             console.log(endDate_mili);
-            this.setStateForUpdate(endDate_mili);
+            this.setStateForUpdate(endDate_mili, resolution === undefined ? "D" : resolution);
             break
           case 'one_year':
             console.log('switch one year');
             const yearOffsetedUnix_mili = 31556926 * 1000 - 86400 * 1000;
             endDate_mili = currentDate_mili - yearOffsetedUnix_mili - partialDayUnix_mili;
             console.log(endDate_mili);
-            this.setStateForUpdate(endDate_mili);
+            this.setStateForUpdate(endDate_mili, resolution === undefined ? "D" : resolution);
             break
           case 'two_years':
             console.log('switch two years');
             const twoYearsOffsetedUnix_mili = 2 * 31556926 * 1000 - 86400 * 1000;
             endDate_mili = currentDate_mili - twoYearsOffsetedUnix_mili - partialDayUnix_mili;
             console.log(endDate_mili);
-            this.setStateForUpdate(endDate_mili);
+            this.setStateForUpdate(endDate_mili, resolution === undefined ? "W" : resolution);
             break
           case 'five_years':
             console.log('switch five years');
             const fiveYearsOffsetedUnix_mili = 5 * 31556926 * 1000 - 86400 * 1000;
             endDate_mili = currentDate_mili - fiveYearsOffsetedUnix_mili - partialDayUnix_mili;
             console.log(endDate_mili);
-            this.setStateForUpdate(endDate_mili);
+            this.setStateForUpdate(endDate_mili, resolution === undefined ? "W" : resolution);
             break
           case 'all':
             console.log('switch all');
             // beginnign of UNIX epoch: Januray 1, 1970.
             endDate_mili = 0;
             console.log(endDate_mili);
-            this.setStateForUpdate(endDate_mili);
+            this.setStateForUpdate(endDate_mili, resolution === undefined ? "W" : resolution);
             break
             default:
         }
       }
 
-      setStateForUpdate = (endDate_mili) => {
+      setStateForUpdate = (endDate_mili, resolution) => {
         this.setState({
           series: [
             {
               name: this.state.series[0]['name'],
               type: this.state.series[0]['type'],
-              data: this.getDataStartingFrom(endDate_mili)
+              data: this.getDataStartingFrom(endDate_mili, resolution)
             }
           ]
         })
       }
 
-      getDataStartingFrom = (endDate_mili) => {
+      getDataStartingFrom = (endDate_mili, resolution) => {
         // Convert UNIX timestamp from milisec to second precision for finnhub.
         const endDate_sec = endDate_mili / 1000;
-        const parsedData = this.getDataFromAPI(this.props.stockSymbol, Date.now(), endDate_sec);
+        const parsedData = this.getDataFromAPI(
+          this.props.stockSymbol, 
+          resolution, 
+          Date.now(), 
+          endDate_sec
+        );
         // Get date.
         const objectsInInterval = parsedData.filter(obj => obj['date'] >= endDate_mili);
         // Get array of objects containing x: date, y: price(s).
@@ -413,14 +421,14 @@ class CandlestickChart extends Component {
             <button onClick={()=>this.updateData('five_years')}>5Y</button>
             <button onClick={()=>this.updateData('all')}>All</button>
             <button></button>
-            <button>1 min</button>
-            <button>5 mins</button>
-            <button>15 mins</button>
-            <button>30 mins</button>
-            <button>1 hour</button>
-            <button>1 day</button>
-            <button>1 week</button>
-            <button>1 month</button>
+            <button onClick={()=>this.updateData(this.currentTimeline, "1")}>1 min</button>
+            <button onClick={()=>this.updateData(this.currentTimeline, "5")}>5 mins</button>
+            <button onClick={()=>this.updateData(this.currentTimeline, "15")}>15 mins</button>
+            <button onClick={()=>this.updateData(this.currentTimeline, "30")}>30 mins</button>
+            <button onClick={()=>this.updateData(this.currentTimeline, "60")}>1 hour</button>
+            <button onClick={()=>this.updateData(this.currentTimeline, "D")}>1 day</button>
+            <button onClick={()=>this.updateData(this.currentTimeline, "W")}>1 week</button>
+            <button onClick={()=>this.updateData(this.currentTimeline, "M")}>1 month</button>
             <Chart 
                 options={this.state.options} 
                 series={this.state.series} 
