@@ -92,7 +92,8 @@ stock_router.post('/candlestick', (req, res) => {
        body['from'],
        body['to']
    ).then( (data) => {
-       res.status(200).json(data);
+       console.log(data)
+       res.status(200).json(JSON.stringify(data));
    }).catch( (error) => {
        console.log(error);
        res.status(400).send(error);

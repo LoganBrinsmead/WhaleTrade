@@ -63,6 +63,7 @@ async function getStockCandles(symbol, resolution, from, to, apiKey) {
         method: 'GET',
     });
     if (res.ok) {
+        console.log(res)
         return res.json();
     }
     throw `[Error]: ${res.status} from finnhub api: ${url}`;
