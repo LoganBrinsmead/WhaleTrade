@@ -1,8 +1,6 @@
 name: WhaleTrade backend API tests
 
 on:
-  push:
-    branches: ['*']
   pull_request:
     branches: [ dev,main ]
 
