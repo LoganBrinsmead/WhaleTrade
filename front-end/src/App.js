@@ -16,7 +16,11 @@ function chart () {
     <div>
       <h1>Welcome to Whale Trade</h1>
       <div>
-        <CandlestickChart/>
+        <CandlestickChart
+          type="candlestick" 
+          height={650}
+          stockSymbol="appl" 
+        />
       </div>
     </div>
   )
