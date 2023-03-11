@@ -85,15 +85,16 @@ stock_router.get('/recommend?=:symbol', (req, res) => {
 });
 
 stock_router.post('/candlestick', (req, res) => {
-   const body = JSON.parse(req.body);
+   const body = req.body;
    finnhub_api.getStockCandles(
        body['symbol'],
        body['resolution'],
        body['from'],
-       body['to']
+       body['to'],
+       apiKey
    ).then( (data) => {
        console.log(data)
-       res.status(200).json(JSON.stringify(data));
+       res.status(200).json(data);
    }).catch( (error) => {
        console.log(error);
        res.status(400).send(error);
