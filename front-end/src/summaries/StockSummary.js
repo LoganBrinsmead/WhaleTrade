@@ -7,7 +7,6 @@ export default function Summary (props) {
     let textColor = "red";
     if (priceChange > 0)
       textColor = "green";
-    if (priceChange < 0)
 
     return (
       <Box
