@@ -1,13 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Box, Grid, IconButton, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
+
 const SearchBar = ({ setSearchQuery }) => {
   const [searchText, setSearchText] = useState("");
+  const [searchData, setSearchDate] = useState({});
+
+
 
   const handleSubmit = (event) => {
+    
     event.preventDefault();
-    setSearchQuery(searchText);
+    // setSearchQuery(searchText);
+    fetch(`http://localhot:9000/api/v1/market/stocks/search?=${searchText}`)
+    .then( res => res.json )
+    .then ( data => {
+      console.log(data)
+    })
+     
+    
   };
 
   const handleChange = (event) => {
