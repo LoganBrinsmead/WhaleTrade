@@ -406,18 +406,19 @@ class CandlestickChart extends Component {
       componentDidMount = () => {
         fetch('http://localhost:9000/api/v1/market/stocks/candlestick', {
           method: 'POST',
-          body: {
-            "symbol": "APPL",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({
+            "symbol": "AAPL",
             "resolution": "D",
-            "from": "1590988249",
-            "to": "1591852249"
-          }
-        })
-          .then(res => console.log(res))
-          .then(data => {
-            this.parsedDataFromAPI(data)
+            "from": "1679103229",
+            "to": "1677724429"
           })
-          .catch(error => console.log(error));     
+        })
+        .then(res => console.log(res))
+        .then(data => {
+          this.parsedDataFromAPI(data)
+        })
+        .catch(error => console.log(error));     
       }
 
       parsedDataFromAPI = (data) => {
