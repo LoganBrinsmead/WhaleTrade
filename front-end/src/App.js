@@ -1,14 +1,17 @@
 import React from 'react';
+// import Header from './component/Header'
 import CandlestickChart from './charts/CandlestickChart';
+import SearchBar from "./component/SearchBar";
 
-function hello () {
+function App () {
   return (
     <div>
-      <h1>Welcome to Whale Trade</h1>
-      
+          {/*<Header />*/}
+        <SearchBar/>
     </div>
   )
 }
+
 
 // FOR TESTING: visualizing the test chart.
 function chart () {
@@ -26,4 +29,4 @@ function chart () {
   )
 }
 
-export default chart
+export default App
