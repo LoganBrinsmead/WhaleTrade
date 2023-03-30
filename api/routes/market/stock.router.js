@@ -30,8 +30,8 @@ stock_router.get('/exchange=:exchange&mic=:mic', (req, res) => {
     });
 });
 
-stock_router.get('/search?=:symbol', (req, res) => {
-   const query = req.params.symbol;
+stock_router.get('/search', (req, res) => {
+    const query = req.query.symbol;
     finnhub_api.searchBySymbol(query,apiKey)
     .then( (data) => {
         res.status(200).json(data);
@@ -51,8 +51,9 @@ stock_router.get('/news', (req, res) => {
     });
 });
 
-stock_router.get('/peers?=:symbol', (req, res) => {
-    const symbol = req.params.symbol;
+stock_router.get('/peers', (req, res) => {
+    // const symbol = req.params.symbol;
+    const symbol = req.query.symbol;
     finnhub_api.getCompanyPeers(symbol, "industry", apiKey)
     .then( (data) => {
         res.status(200).json(data);
@@ -62,8 +63,8 @@ stock_router.get('/peers?=:symbol', (req, res) => {
     });
 });
 
-stock_router.get('/quote?=:symbol', (req, res) => {
-    const symbol = req.params.symbol;
+stock_router.get('/quote', (req, res) => {
+    const symbol = req.query.symbol;
     finnhub_api.getQuote(symbol, apiKey)
     .then( (data) => {
         res.status(200).json(data);
@@ -73,8 +74,8 @@ stock_router.get('/quote?=:symbol', (req, res) => {
     });
 });
 
-stock_router.get('/recommend?=:symbol', (req, res) => {
-    const symbol = req.params.symbol;
+stock_router.get('/recommend', (req, res) => {
+    const symbol = req.query.symbol;
     finnhub_api.getTrend(symbol, apiKey)
     .then( (data) => {
        res.status(200).json(data);
