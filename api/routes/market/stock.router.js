@@ -116,7 +116,7 @@ module.exports = stock_router;
  *      summary: returns a list of valid Market Identifier Codes
  *      tags: [Market]
  *
- * /market/stocks/search?={symbol}:
+ * /market/stocks/search?symbol={symbol}:
  *  get:
  *      summary: search for symbols by name
  *      description:
@@ -151,7 +151,7 @@ module.exports = stock_router;
  *      description:
  *      tags: [Market]
  *
- * /market/stocks/peers?={symbol}:
+ * /market/stocks/peers?symbol={symbol}:
  *  get:
  *      summary: get a list of similar companies
  *      description:
@@ -163,7 +163,7 @@ module.exports = stock_router;
  *              type: string
  *            description: stock symbol
  *
- * /market/stocks/quote?={symbol}:
+ * /market/stocks/quote?symbol={symbol}:
  *  get:
  *      summary: most recent price of a given symbol
  *      description: Get real-time quote data for US stocks. Constant polling is not recommended. Use websocket if you need real-time updates.
@@ -175,7 +175,7 @@ module.exports = stock_router;
  *              type: string
  *            description: stock symbol
  *
- * /market/stocks/recommend?={symbol}:
+ * /market/stocks/recommend?symbol={symbol}:
  *  get:
  *      summary: get latest analyst recommendation trends for a company
  *      description:
