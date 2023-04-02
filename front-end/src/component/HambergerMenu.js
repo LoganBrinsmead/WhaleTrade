@@ -8,7 +8,8 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
+import MenuIcon from '@mui/icons-material/Menu';
+
 
 const useStyles = makeStyles((theme) => ({
   list: {
