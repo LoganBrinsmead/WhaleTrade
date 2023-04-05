@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import {
   IconButton,
   Drawer,
@@ -7,9 +7,8 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-} from "@material-ui/core";
+} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-
 
 const useStyles = makeStyles((theme) => ({
   list: {

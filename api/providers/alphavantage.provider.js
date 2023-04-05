@@ -1,0 +1,1 @@
+const base_url = "https://alphavantage.co"

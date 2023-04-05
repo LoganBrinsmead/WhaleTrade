@@ -1,25 +1,28 @@
 import { useState, useEffect } from "react";
 import { Box, Grid, IconButton, TextField } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
+// import SearchIcon from "@mui/icons-material/Search";
+import { Search } from "@mui/icons-material"
 
 
 const SearchBar = ({ setSearchQuery }) => {
   const [searchText, setSearchText] = useState("");
-  const [searchData, setSearchDate] = useState({});
+  const [searchData, setSearchData] = useState({});
 
+
+  const handleQuery = () => {
+    fetch(`http://localhost:9000/api/v1/market/stocks/search?=${searchText}`)
+      .then( res => res.json())
+      .then( data => {
+        setSearchData(data);
+        console.log(data);
+      }).catch( err => console.log(err));
+  }
 
 
   const handleSubmit = (event) => {
     
     event.preventDefault();
-    // setSearchQuery(searchText);
-    fetch(`http://localhot:9000/api/v1/market/stocks/search?=${searchText}`)
-    .then( res => res.json )
-    .then ( data => {
-      console.log(data)
-    })
-     
-    
+    handleQuery();
   };
 
   const handleChange = (event) => {
@@ -43,7 +46,7 @@ const SearchBar = ({ setSearchQuery }) => {
           </Grid>
           <Grid item>
             <IconButton type="submit" aria-label="search">
-              <SearchIcon />
+              <Search />
             </IconButton>
           </Grid>
         </Grid>

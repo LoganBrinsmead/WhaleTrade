@@ -1,6 +1,7 @@
 import React from "react";
 import Box from '@mui/material/Box'
-import CandlestickChart from './charts/CandlestickChart';
+import CandlestickChart from '../charts/CandlestickChart';
+
 
 
 
