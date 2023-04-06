@@ -16,7 +16,7 @@ app.use((req, res, next) => {
 
 // serve built react app as public file
 app.get("/", (req, res) => {
-    res.setHeader('Content-Type', 'application/javascript');
+    res.setHeader('Content-Type', 'text/javascript');
     res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
