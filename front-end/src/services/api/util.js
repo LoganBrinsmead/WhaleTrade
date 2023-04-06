@@ -1,5 +1,5 @@
 /**
- *
+ * get url from window url
  * @returns {*}
  */
 export const getApiURL = () => {

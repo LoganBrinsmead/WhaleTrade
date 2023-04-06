@@ -4,7 +4,8 @@ const express = require('express');
 const cors = require('cors');
 const PORT = process.env.PORT;
 
-const static_files = path.join(__dirname + 'public');
+const static_files = path.join(__dirname + '/public');
+
 const app = express();
 
 
