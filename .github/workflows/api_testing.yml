@@ -2,7 +2,7 @@ name: WhaleTrade backend API tests
 
 on:
   pull_request:
-    branches: [ dev,main ]
+    branches: [ 'dev', 'main' ]
 
 jobs:
   api_tests:
@@ -15,9 +15,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
-      - run: npm install
-        working-directory: ./api
-      - run: npm test
+      - run: |
+          npm install
+          npm test
         working-directory: ./api
 
   ui_tests:
