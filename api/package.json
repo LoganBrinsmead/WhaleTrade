@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "test": "mocha ./test/test.*.js --exit"
+    "test": "mocha ./test/test.*.js --exit",
+    "build": "webpack"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +23,7 @@
     "ws": "^8.12.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "webpack-cli": "^5.0.1"
   }
 }
