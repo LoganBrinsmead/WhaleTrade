@@ -208,16 +208,13 @@ module.exports = stock_router;
  *
  * /market/stocks/intraday?symbol={symbol}&interval={interval}&outputsize={outputsize}:
  *  get:
- *      summary: data points for candlestick charts
+ *      summary: intraday time-series data
  *      tags: [Market]
- *      consumes:
- *          - application/json
  *      parameters:
  *          - in: path
  *            name: symbol
  *            schema:
  *              type: string
- *            description: query parameters
  *          - in: path
  *            name: interval
  *            schema:
@@ -227,28 +224,25 @@ module.exports = stock_router;
  *            name: outputsize
  *            scheme:
  *              type: string
- *            description:
  *
- * /market/stocks/weekly?symbol={symbol}
+ * /market/stocks/weekly?symbol={symbol}:
  *  get:
- *      summary: get weekly price data
- *      description:
+ *      summary: weekly time-series data
+ *      tags: [Market]
  *      parameters:
  *          - in: path
  *            name: symbol
  *            schema:
  *              type: string
- *            description: stock symbol
  *
- * /market/stocks/monthly?symbol={symbol}
+ * /market/stocks/monthly?symbol={symbol}:
  *  get:
- *      summary: get weekly price data
- *      description:
+ *      summary: monthly time-series data
+ *      tags: [Market]
  *      parameters:
  *          - in: path
  *            name: symbol
  *            schema:
  *              type: string
- *            description: stock symbol
  *
  */

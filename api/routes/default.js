@@ -6,12 +6,6 @@ default_router.get("/", (req, res) => {
     res.sendStatus(200);
 });
 
-default_router.post("/", (req, res) => {
-    let data = req.body;
-    console.log(data);
-    res.sendStatus(200).json(JSON.parse(data));
-});
-
 const market_router = require('./market/market.router');
 const docs_router = require('./docs.router');
 
