@@ -38,5 +38,6 @@ services:
     restart: unless-stopped
 
 ```
+
 ## Contributors:
 ![Contributors](https://contrib.rocks/image?repo=LoganBrinsmead/WhaleTrade)
