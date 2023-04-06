@@ -2,9 +2,11 @@ require('dotenv').config();
 
 const express = require('express');
 const finnhub_api = require('../../providers/finnhubapi.provider');
+const alphavantage_api = require('../../providers/alphavantage.provider');
 const {exchanges, mics} = require('../../utils/static_market_info');
 
-const apiKey = process.env.FINNHUBAPIKEY;
+const finnhubapikey = process.env.FINNHUBAPIKEY;
+const alphavantageapikey = process.env.ALPHAVANTAGEAPIKEY;
 
 const stock_router = express.Router({mergeParams: true});
 
@@ -21,7 +23,7 @@ stock_router.get('/list/mics', (req, res) => {
 
 stock_router.get('/exchange=:exchange&mic=:mic', (req, res) => {
     const { exchange, mic } = req.params;
-    finnhub_api.getStocks(exchange, mic, apiKey)
+    finnhub_api.getStocks(exchange, mic, finnhubapikey)
     .then( (data) => {
         res.status(200).json(data);
     }).catch( (error) => {
@@ -32,7 +34,7 @@ stock_router.get('/exchange=:exchange&mic=:mic', (req, res) => {
 
 stock_router.get('/search', (req, res) => {
     const query = req.query.symbol;
-    finnhub_api.searchBySymbol(query,apiKey)
+    finnhub_api.searchBySymbol(query,finnhubapikey)
     .then( (data) => {
         res.status(200).json(data);
     }).catch( (error) => {
@@ -42,7 +44,7 @@ stock_router.get('/search', (req, res) => {
 });
 
 stock_router.get('/news', (req, res) => {
-    finnhub_api.getMarketNews("general", apiKey)
+    finnhub_api.getMarketNews("general", finnhubapikey)
     .then( (data) => {
         res.status(200).json(data);
     }).catch( (error) => {
@@ -52,9 +54,8 @@ stock_router.get('/news', (req, res) => {
 });
 
 stock_router.get('/peers', (req, res) => {
-    // const symbol = req.params.symbol;
     const symbol = req.query.symbol;
-    finnhub_api.getCompanyPeers(symbol, "industry", apiKey)
+    finnhub_api.getCompanyPeers(symbol, "industry", finnhubapikey)
     .then( (data) => {
         res.status(200).json(data);
     }).catch( (error) => {
@@ -65,7 +66,7 @@ stock_router.get('/peers', (req, res) => {
 
 stock_router.get('/quote', (req, res) => {
     const symbol = req.query.symbol;
-    finnhub_api.getQuote(symbol, apiKey)
+    finnhub_api.getQuote(symbol, finnhubapikey)
     .then( (data) => {
         res.status(200).json(data);
     }).catch( (error) => {
@@ -76,7 +77,7 @@ stock_router.get('/quote', (req, res) => {
 
 stock_router.get('/recommend', (req, res) => {
     const symbol = req.query.symbol;
-    finnhub_api.getTrend(symbol, apiKey)
+    finnhub_api.getTrend(symbol, finnhubapikey)
     .then( (data) => {
        res.status(200).json(data);
     }).catch( (error) => {
@@ -85,21 +86,39 @@ stock_router.get('/recommend', (req, res) => {
     });
 });
 
-stock_router.post('/candlestick', (req, res) => {
-   const body = JSON.parse(req.body);
-   finnhub_api.getStockCandles(
-       body['symbol'],
-       body['resolution'],
-       body['from'],
-       body['to']
-   ).then( (data) => {
-       res.status(200).json(data);
-   }).catch( (error) => {
-       console.log(error);
-       res.status(400).send(error);
-   })
-});
+// query params symbol, interval, outputsize
+stock_router.get('/intraday', (req, res) => {
+    const { symbol, interval, outputsize } = req.query;
+    alphavantage_api.getIntraDayData(symbol, interval, outputsize, alphavantageapikey)
+    .then( (data) => {
+        res.status(200).json(data);
+    }).catch((error) => {
+        console.log(error);
+        res.status(400).send(error);
+    });
+})
 
+stock_router.get('/weekly', (req, res) => {
+    const symbol = req.query.symbol;
+    alphavantage_api.getWeeklyData(symbol, alphavantageapikey)
+    .then( (data) => {
+        res.status(200).json(data);
+    }).catch((error) => {
+        console.log(error);
+        res.status(400).send(error);
+    });
+})
+
+stock_router.get('/monthly', (req, res) => {
+    const symbol = req.query.symbol;
+    alphavantage_api.getMonthlyData(symbol, alphavantageapikey)
+    .then( (data) => {
+        res.status(200).json(data);
+    }).catch((error) => {
+        console.log(error);
+        res.status(400).send(error);
+    })
+})
 
 module.exports = stock_router;
 
@@ -177,7 +196,7 @@ module.exports = stock_router;
  *
  * /market/stocks/recommend?symbol={symbol}:
  *  get:
- *      summary: get latest analyst recommendation trends for a company
+ *      summary: get the latest analyst recommendation trends for a company
  *      description:
  *      tags: [Market]
  *      parameters:
@@ -187,34 +206,49 @@ module.exports = stock_router;
  *              type: string
  *            description: stock symbol
  *
- * /market/stocks/candlestick:
- *  post:
+ * /market/stocks/intraday?symbol={symbol}&interval={interval}&outputsize={outputsize}:
+ *  get:
  *      summary: data points for candlestick charts
  *      tags: [Market]
  *      consumes:
  *          - application/json
  *      parameters:
- *          - in: body
- *            name: query
- *            description: query parameters
+ *          - in: path
+ *            name: symbol
  *            schema:
- *              type: object
- *              required:
- *                  - symbol
- *                  - resolution
- *                  - from
- *                  - to
- *              properties:
- *                  symbol:
- *                      type: string
- *                      description: stock symbol
- *                  resolution:
- *                      type: string
- *                      description: timeframes (1,5,15,30,60,D,W,M)
- *                  from:
- *                      type: string
- *                      description: UNIX timestamp. interval value
- *                  to:
- *                      type: string
- *                      description: UNIX timestamp. interval value
+ *              type: string
+ *            description: query parameters
+ *          - in: path
+ *            name: interval
+ *            schema:
+ *              type: string
+ *            description:
+ *          - in: path
+ *            name: outputsize
+ *            scheme:
+ *              type: string
+ *            description:
+ *
+ * /market/stocks/weekly?symbol={symbol}
+ *  get:
+ *      summary: get weekly price data
+ *      description:
+ *      parameters:
+ *          - in: path
+ *            name: symbol
+ *            schema:
+ *              type: string
+ *            description: stock symbol
+ *
+ * /market/stocks/monthly?symbol={symbol}
+ *  get:
+ *      summary: get weekly price data
+ *      description:
+ *      parameters:
+ *          - in: path
+ *            name: symbol
+ *            schema:
+ *              type: string
+ *            description: stock symbol
+ *
  */
