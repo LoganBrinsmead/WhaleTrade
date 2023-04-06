@@ -1,4 +1,6 @@
-api/node_modules
-api/.env
-front-end/node_modules
-front-end/.env
+./api/node_modules
+./api/.env
+./front-end/node_modules
+./front-end/.env
+./api/dist
+api/dist
