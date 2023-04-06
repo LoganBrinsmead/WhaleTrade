@@ -4,7 +4,9 @@ const express = require('express');
 const cors = require('cors');
 const PORT = process.env.PORT;
 
+const static_files = path.join(__dirname + 'public');
 const app = express();
+
 
 app.use(express.json());
 app.use(cors());
@@ -16,12 +18,11 @@ app.use((req, res, next) => {
 
 // serve built react app as public file
 app.get("/", (req, res) => {
-    res.setHeader('Content-Type', 'text/javascript');
-    res.sendFile(path.join(__dirname, "public", "index.html"));
+    res.sendFile(path.join(static_files, "index.html"));
 });
 
 
-// import routes
+// import api router
 const routes = require('./routes/default');
 app.use("/api/v1", routes);
 
