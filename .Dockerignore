@@ -1,0 +1,8 @@
+resources
+.github
+.gitignore
+api
+front-end
+README.md
+.Dockerignore
+package-lock.json
