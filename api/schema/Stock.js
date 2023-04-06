@@ -13,6 +13,10 @@ const stockSchema = new mongoose.Schema({
     quantity: {
         type: String,
         required: true
+    },
+    marketValue: {
+        type: String,
+        required: true
     }
 })
 

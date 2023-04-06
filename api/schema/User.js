@@ -8,10 +8,7 @@ const portfolioSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    stocks: [{
-        stock: Stock,
-        marketValue: Number
-    }],
+    stocks: [{ Stock }],
     crypto: [{
         crypto: Crypto,
         marketValue: Number

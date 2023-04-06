@@ -17,6 +17,9 @@ userRouter.post("/buyStock", async (req, res) => {
 
         // name of the user's portfolio
         const portfolioName = await req.body.portfolioName;
+
+        // (number of shares) * (price)... calculate this and pass it on frontend
+        const newPositionValue = await req.body.positionValue;
         /*
             check to see if this user already has this stock in the given portfolio that they are buying for
             if they do, calculate the market value, and += the number of the shares
@@ -34,13 +37,13 @@ userRouter.post("/buyStock", async (req, res) => {
 
             // the user does have a portfolio with that name
             portfolio.findOne({'Stock.name': {$elemMatch: {name: stockName}}}, function (err, stock) {
-                // could not find a portfolio that has that stock, so add it.
+                // the portfolio does not have that stock, so add it
                 if(err) {
                     addNewStock(portfolioName, stockName, value);
                 }
 
-                // a portfolio with that stock was found
-                
+                // the portfolio does have that stock, update the existing market value and number of shares
+                stock.marketValue = stock.marketValue + newPositionValue;
             })
 
             
