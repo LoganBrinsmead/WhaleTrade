@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: '18.x'
 
-      - name: build static files
+      - name: build public files
         run: |
           npm install
           npm run build
@@ -44,7 +44,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: static-build-files
-          path: ./api/static
+          path: ./api/public
 
       - name: Bundle w/ webpack
         run: |

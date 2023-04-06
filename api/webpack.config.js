@@ -6,7 +6,7 @@ module.exports = {
     plugins: [
         new CopyWebpackPlugin({
             patterns:[
-                { from: 'static', to: '.' }
+                { from: 'static', to: './public' }
             ]
         })
     ],

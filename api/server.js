@@ -14,9 +14,9 @@ app.use((req, res, next) => {
     next();
 });
 
-// serve built react app as static file
+// serve built react app as public file
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "static", "index.html"));
+    res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 
