@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon server.js",
     "test": "mocha ./test/test.*.js --exit",
-    "build": "webpack"
+    "build": "webpack",
+    "prod": "node dist/whaletrade.bundle.js"
   },
   "author": "",
   "license": "ISC",

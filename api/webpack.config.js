@@ -4,7 +4,7 @@ module.exports = {
     entry: './server.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'api.bundle.js'
+        filename: "whaletrade.bundle.js"
     },
     target: 'node',
     mode: 'production'

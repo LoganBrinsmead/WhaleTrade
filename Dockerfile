@@ -7,3 +7,6 @@ ENV FINNHUBAPIKEY=""
 ENV ALPHAVANTAGEAPIKEY=""
 
 WORKDIR /server
+COPY ./dist/ /server/
+
+CMD ["node", "whaletrade.bundle.js"]

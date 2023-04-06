@@ -1,4 +1,7 @@
-
+/**
+ *
+ * @returns {*}
+ */
 export const getApiURL = () => {
     const apiURL = new URL(window.location.href);
     if (process.env.NODE_ENV !== 'production') {
