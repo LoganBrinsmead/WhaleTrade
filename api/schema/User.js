@@ -1,12 +1,21 @@
 const mongoose = require("mongoose");
+import Stock from "../schema/Stock";
+import Crypto from "../schema/Crypto";
 
 const portfolioSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
-    stocks: [String],
-    crypto: [String],
+    stocks: [{
+        stock: Stock,
+        marketValue: Number
+    }],
+    crypto: [{
+        crypto: Crypto,
+        marketValue: Number
+    }],
     options: [String],
     balance: {
         type: String,
