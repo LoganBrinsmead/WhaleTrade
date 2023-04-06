@@ -4,10 +4,11 @@ import { Search } from "@mui/icons-material"
 
 import { getStockLookup } from '../services/api/whaletradApi';
 
-const SearchBar = ({ setSearchQuery }) => {
+const SearchBar = () => {
   const [searchText, setSearchText] = useState("");
   const [searchData, setSearchData] = useState({});
 
+  console.log(searchData);
 
   const handleQuery = () => {
     getStockLookup(searchText)
