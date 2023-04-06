@@ -1,12 +1,7 @@
 ![ProjectLogo](https://github.com/LoganBrinsmead/WhaleTrade/blob/dev/front-end/src/component/logo/typelogo-full-color_white.png)
 # WhaleTrade
-Releases: 
-![Tests](https://github.com/LoganBrinsmead/WhaleTrade/actions/workflows/api_testing/badge.svg)
-![Build](https://github.com/LoganBrinsmead/WhaleTrade/actions/workflows/build/badge.svg)
-
-Dev:
-![Tests](https://github.com/LoganBrinsmead/WhaleTrade/actions/workflows/api_testing/badge.svg?branch=dev)
-![Build](https://github.com/LoganBrinsmead/WhaleTrade/actions/workflows/build/badge.svg?branch=dev)
+![Tests](https://github.com/LoganBrinsmead/WhaleTrade/actions/workflows/api_testing.yml/badge.svg)
+![Build](https://github.com/LoganBrinsmead/WhaleTrade/actions/workflows/build.yml/badge.svg)
 
 
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
