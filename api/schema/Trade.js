@@ -6,11 +6,11 @@ const Option = require("./Option");
 const tradeSchema = new mongoose.Schema({
     ticker: {
         type: string,
-        required: trusted,
+        required: true,
     },
     name: {
         type: string,
-        required: trusted,
+        required: true,
     },
     stock: Stock,
     crypto: Crypto,

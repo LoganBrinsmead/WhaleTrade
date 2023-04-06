@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const portfolioSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
     stocks: [String],
     crypto: [String],
     options: [String],
