@@ -1,0 +1,81 @@
+name: Build For Production
+
+on:
+  push:
+    branches: [ 'main' ]
+
+jobs:
+  build_frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node ENV
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: build static files
+        run: |
+          npm install
+          npm run build
+        working-directory: ./front-end
+
+      - name: upload ui build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: static-build-files
+          path: ./front-end/build
+          retention-days: 1
+
+  bundle_backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup node ENV
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: pull static ui build
+        uses: actions/download-artifact@v3
+        with:
+          name: static-build-files
+          path: ./api/static
+
+      - name: Bundle w/ webpack
+        run: |
+          npm install
+          npm run build
+        working-directory: ./api
+
+      - name: upload bundled server
+        uses: actions/upload-artifact@v3
+        with:
+          name: bundled-server
+          path: ./api/dist
+
+  build_docker_image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: pull bundled server
+        uses: actions/download-artifact@v3
+        with:
+          name: bundled-server
+          path: ./dist
+
+      - name: Docker Login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: build & push docker image
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/whaletrade:latest
+
+  prod_deploy:
+    runs-on: ubuntu-latest
