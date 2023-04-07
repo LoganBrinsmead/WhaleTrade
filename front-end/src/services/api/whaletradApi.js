@@ -112,4 +112,25 @@ export function getMonthlyData(symbol) {
     return axiosClient.get(`/market/stocks/monthly?symbol=${symbol}`);
 }
 
+/**
+ *
+ * @param type - specify the time frame as 'daily', 'weekly', 'monthly'
+ * @param symbol - stock symbol
+ * @param interval - 1min, 5min, 15min, 30min, 60min (only used w/ daily)
+ * @param outputsize - compact, full (only used w/ daily)
+ * @returns {Promise<axios.AxiosResponse<any>>}
+ */
+export function getTimeSeriesData(type, symbol, interval, outputsize) {
+    if (type === "daily") {
+        return axiosClient.get(`/market/stocks/intraday?symbol=${symbol}&interval=${interval}&outputsize=${outputsize}`);
+    }
+    else if (type === "weekly") {
+        return axiosClient.get(`/market/stocks/weekly?symbol=${symbol}`);
+    }
+    else if (type === "monthly") {
+        return axiosClient.get(`/market/stocks/monthly?symbol=${symbol}`);
+    }
+
+    throw 'Error Incorrect type, please use "daily, weekly, or monthly"'
+}
 
