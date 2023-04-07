@@ -15,6 +15,8 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(express.static('public'));
+
 // serve built react app
 app.get("/", (req, res) => {
     res.sendFile(path.resolve(__dirname, 'public', 'index.html'));

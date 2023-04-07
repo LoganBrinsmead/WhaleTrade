@@ -101,7 +101,10 @@ jobs:
           short-description: A Social Paper Trading App
           readme-filepath: ./docker.md
 
-#  prod_deploy:
-#    needs: docker_build_and_push
-#    runs-on: ubuntu-latest
-#    steps:
+  prod_deploy:
+    needs: docker_build_and_push
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy
+        run: |
+          echo "deploy"

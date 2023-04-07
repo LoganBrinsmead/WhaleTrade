@@ -21,4 +21,5 @@ WORKDIR /server
 COPY ./dist/ /server/
 
 # use pm to run server - needs to be configured for logging
-CMD ["forever", "start", "whaletrade.bundle.js"]
+# run forever in foreground
+CMD ["forever", "whaletrade.bundle.js"]
