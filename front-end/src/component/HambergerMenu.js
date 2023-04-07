@@ -32,7 +32,7 @@ const HamburgerMenu = () => {
     }
     setDrawerOpen(open);
   };
-
+  // convert to ListItemButton since this is deprecated
   const list = () => (
     <div
       className={classes.list}
@@ -42,7 +42,7 @@ const HamburgerMenu = () => {
     >
       <List>
         {["Item 1", "Item 2", "Item 3"].map((text, index) => (
-          <ListItem button key={text}> // convert to ListItemButton since this is depricated
+          <ListItem button key={text}>
             <ListItemIcon>{index % 2 === 0 ? <Menu /> : <Menu />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
