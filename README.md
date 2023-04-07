@@ -1,8 +1,12 @@
-![ProjectLogo](https://github.com/LoganBrinsmead/WhaleTrade/blob/dev/front-end/src/component/logo/typelogo-full-color_white.png)
 # WhaleTrade
-![Tests](https://github.com/LoganBrinsmead/WhaleTrade/actions/workflows/api_testing.yml/badge.svg)
-![Build](https://github.com/LoganBrinsmead/WhaleTrade/actions/workflows/build.yml/badge.svg)
+<hr>
 
+![ProjectLogo](https://github.com/LoganBrinsmead/WhaleTrade/blob/dev/front-end/src/component/logo/typelogo-full-color_white.png)
+
+![Tests](https://github.com/LoganBrinsmead/WhaleTrade/actions/workflows/api_testing.yml/badge.svg)
+![Build](https://github.com/LoganBrinsmead/WhaleTrade/actions/workflows/build.yaml/badge.svg)
+
+[![Docker Pulls](https://img.shields.io/docker/pulld/whaletrade/whaletrade.svg)](https://hub.docker.com/r/whaletrade/whaletrade)
 
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
