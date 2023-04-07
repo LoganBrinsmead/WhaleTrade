@@ -1,72 +1,44 @@
-import React, { useState } from "react";
-import { makeStyles } from "@mui/styles";
-import {
-  IconButton,
-  Drawer,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
+import * as React from 'react';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
 
-const useStyles = makeStyles((theme) => ({
-  list: {
-    width: 250,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-}));
+export default function Hamburger(props) {
+  const { options, onClick } = props;
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
-const HamburgerMenu = () => {
-  const classes = useStyles();
-  const [drawerOpen, setDrawerOpen] = useState(false);
-
-  const toggleDrawer = (open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-    setDrawerOpen(open);
+  const handleMenuClick = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
-  const list = () => (
-    <div
-      className={classes.list}
-      role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
-    >
-      <List>
-        {["Item 1", "Item 2", "Item 3"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <MenuIcon /> : <MenuIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
-    <div>
+    <React.Fragment>
       <IconButton
+        size="large"
         edge="start"
-        className={classes.menuButton}
         color="inherit"
         aria-label="menu"
-        onClick={toggleDrawer(true)}
+        onClick={handleMenuClick}
+        sx={{ mr: 2 }}
       >
         <MenuIcon />
       </IconButton>
-      <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
-        {list()}
-      </Drawer>
-    </div>
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
+      >
+        {options.map((option, index) => (
+          <MenuItem key={index} onClick={() => {onClick(option); handleMenuClose();}}>
+            {option}
+          </MenuItem>
+        ))}
+      </Menu>
+    </React.Fragment>
   );
-};
-
-export default HamburgerMenu;
+}

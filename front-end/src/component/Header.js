@@ -11,7 +11,7 @@ import HamburgerMenu from "./HambergerMenu"
 const headerStyle = {
   backgroundColor: "white",
   width: '100%',
-  height: '150px',
+  height: '120px',
   display: 'flex',
   position: 'relative'
 };
@@ -64,7 +64,7 @@ function Header()  {
       </Box>
       
       <Box sx = {hambutgerStyle}>
-        <HamburgerMenu />
+      
       </Box>
      
     
