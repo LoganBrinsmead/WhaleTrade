@@ -60,7 +60,7 @@ jobs:
           retention-days: 1
 
   docker_build_and_push:
-    needs: bundle_backend
+    needs: bundle_server
     runs-on: ubuntu-latest
     steps:
       - name: checkout repository
@@ -102,6 +102,6 @@ jobs:
           readme-filepath: ./docker.md
 
 #  prod_deploy:
-#    needs: build_docker_image
+#    needs: docker_build_and_push
 #    runs-on: ubuntu-latest
 #    steps:
