@@ -1,12 +1,12 @@
 import React from 'react';
-// import Header from './component/Header'
+import Header from './component/Header'
 // import CandlestickChart from './charts/CandlestickChart';
 import SearchBar from "./component/SearchBar";
 
 function App () {
   return (
     <div>
-          {/*<Header />*/}
+        <Header />
         <SearchBar/>
     </div>
   )

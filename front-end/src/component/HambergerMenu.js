@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/material/styles";
 import {
   IconButton,
   Drawer,
@@ -7,8 +7,8 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-} from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
+} from '@mui/material';
+import { Menu } from '@mui/icons-material';
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -42,8 +42,8 @@ const HamburgerMenu = () => {
     >
       <List>
         {["Item 1", "Item 2", "Item 3"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <MenuIcon /> : <MenuIcon />}</ListItemIcon>
+          <ListItem button key={text}> // convert to ListItemButton since this is depricated
+            <ListItemIcon>{index % 2 === 0 ? <Menu /> : <Menu />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
@@ -60,7 +60,7 @@ const HamburgerMenu = () => {
         aria-label="menu"
         onClick={toggleDrawer(true)}
       >
-        <MenuIcon />
+        <Menu />
       </IconButton>
       <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
         {list()}
