@@ -80,7 +80,7 @@ jobs:
           name: bundled-server
           path: ./dist
 
-      - name: check contents of dir
+      - name: check contents of current dir
         run: |
           ls -alt
           ls -a ./dist/*
