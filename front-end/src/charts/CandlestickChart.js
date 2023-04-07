@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Chart from 'react-apexcharts';
 import dayjs from 'dayjs';
-//import fetch from 'node-fetch';
+import Box from '@mui/material/Box'
 
 class CandlestickChart extends Component {
     constructor(props) {
@@ -416,6 +416,7 @@ class CandlestickChart extends Component {
         })
         .then(res => console.log(res))
         .then(data => {
+          console.log("success: ", data)
           this.parsedDataFromAPI(data)
         })
         .catch(error => console.log(error));     
@@ -427,7 +428,7 @@ class CandlestickChart extends Component {
 
       render() {
         return (
-          <div>
+          <Box>
             <button onClick={()=>this.updateData('one_day')}>1D</button>
             <button onClick={()=>this.updateData('five_days')}>5D</button>
             <button onClick={()=>this.updateData('one_month')}>1M</button>
@@ -456,7 +457,7 @@ class CandlestickChart extends Component {
             <button onClick={()=>this.displayCandlestickChart(this.chartData)}>Candlestick</button>
             <button onClick={()=>this.displayLineChart(this.chartData)}>Line</button>
             <button onClick={()=>this.displayAreaChart(this.chartData)}>Area</button>
-          </div>
+          </Box>
         );
     }
 }
