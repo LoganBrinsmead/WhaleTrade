@@ -4,5 +4,3 @@
 ./front-end/.env
 ./api/dist
 api/dist
-./dist/*
-dist/*
