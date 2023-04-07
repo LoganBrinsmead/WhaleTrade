@@ -18,7 +18,7 @@ ENV ALPHAVANTAGEAPIKEY=""
 
 # Copy bundle and static build files
 WORKDIR /server
-COPY . /server/
+COPY ./dist .
 
 # use pm to run server - needs to be configured for logging
 # run forever in foreground
