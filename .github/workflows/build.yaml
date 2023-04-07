@@ -80,9 +80,6 @@ jobs:
           name: bundled-server
           path: ./dist
 
-      - name: docker build action
-        uses: actions/setup-buildx-actions@v2
-
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
