@@ -17,8 +17,8 @@ ENV FINNHUBAPIKEY=""
 ENV ALPHAVANTAGEAPIKEY=""
 
 # Copy bundle and static build files
-WORKDIR /server
-COPY ./dist/ .
+RUN mkdir /server
+COPY ./dist/ /server/
 
 # use pm to run server - needs to be configured for logging
 # run forever in foreground
