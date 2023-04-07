@@ -28,8 +28,6 @@ const sideBarStyle = {
 
 
 
-
-
 export default function Body(){
   return(
     <Box sx={bodyStyle}>
@@ -41,9 +39,8 @@ export default function Body(){
           stockSymbol="AAPL" 
         />
       </Box>  
-      <Box sx={sideBarStyle}>
-        <Sidebar />
-      </Box>
+      
+     
     </Box>
   )
 }
