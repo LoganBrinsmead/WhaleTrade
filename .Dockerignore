@@ -6,3 +6,5 @@ front-end
 README.md
 .Dockerignore
 package-lock.json
+docker-compose.yml
+docker.md

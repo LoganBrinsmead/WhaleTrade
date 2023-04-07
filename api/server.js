@@ -2,9 +2,7 @@ require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const cors = require('cors');
-const PORT = process.env.PORT;
-
-const static_files = path.join(__dirname + '/public');
+const PORT = process.env.PORT || 9000;
 
 const app = express();
 
@@ -17,9 +15,9 @@ app.use((req, res, next) => {
     next();
 });
 
-// serve built react app as public file
+// serve built react app
 app.get("/", (req, res) => {
-    res.sendFile(path.join(static_files, "index.html"));
+    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
 
 
