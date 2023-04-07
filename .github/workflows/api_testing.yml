@@ -31,5 +31,5 @@ jobs:
       - run: npm install
         working-directory: ./front-end
 
-# to-do
-# - build: build job 
+# todo :
+# - on pull requests dev->main , build on successful tests
