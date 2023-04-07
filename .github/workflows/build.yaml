@@ -29,7 +29,7 @@ jobs:
           path: ./front-end/build
           retention-days: 1
 
-  bundle_backend:
+  bundle_server:
     needs: build_frontend
     runs-on: ubuntu-latest
     steps:
@@ -57,12 +57,23 @@ jobs:
         with:
           name: bundled-server
           path: ./api/dist
-          retention-days: 7
+          retention-days: 1
 
-  build_docker_image:
+  docker_build_and_push:
     needs: bundle_backend
     runs-on: ubuntu-latest
     steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+
+      - name: set image tag
+        run: |
+          if [[ $GITHUB_REF == 'refs/head/main' ]]; then
+            echo "DOCKER_IMAGE_TAG=latest" >> "$GITHUB_ENV"
+          else
+            echo "DOCKER_IMAGE_TAG=develop" >> "$GITHUB_ENV"
+          fi
+
       - name: pull bundled server w/ static frontend
         uses: actions/download-artifact@v3
         with:
@@ -79,7 +90,16 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/whaletrade:latest
+          tags: whaletrade/whaletrade:${{ env.DOCKER_IMAGE_TAG }}
+
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: whaletrade/whaletrade
+          short-description: A Social Paper Trading App
+          readme-filepath: ./docker.md
 
 #  prod_deploy:
 #    needs: build_docker_image

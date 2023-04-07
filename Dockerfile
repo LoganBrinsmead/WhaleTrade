@@ -11,7 +11,7 @@ RUN npm install -g forever
 
 # Environment Variables
 ENV DEVELOPMENT=false
-ENV MONGOURI="mongodb://localhost:2701"
+ENV MONGOURI="mongodb://localhost:27017"
 ENV PORT="80"
 ENV FINNHUBAPIKEY=""
 ENV ALPHAVANTAGEAPIKEY=""
@@ -20,5 +20,5 @@ ENV ALPHAVANTAGEAPIKEY=""
 WORKDIR /server
 COPY ./dist/ /server/
 
-#
+# use pm to run server - needs to be configured for logging
 CMD ["forever", "start", "whaletrade.bundle.js"]

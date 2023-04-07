@@ -34,11 +34,13 @@ services:
     image: whaletrade/whaletrade:latest
     ports:
       - "80:80"
+    volumes:
+      - "~whaletrade/data:/data/db"
     environment:
-      - PORT=80 # (OPTIONAL) change the port of the server
-      - FINNHUBAPIKEY="" # (REQUIRED) api key from finnhub.io
-      - APLPHAVANTAGEAPIKEY="" # (REQUIRED) api key from alphavantage.co
-      - MONGOURI="" # (OPTIONAL) set if you don't want to use the packaged database
+      - PORT=80                                        # (OPTIONAL) change the port of the server
+      - FINNHUBAPIKEY=""                               # (REQUIRED) api key from finnhub.io
+      - APLPHAVANTAGEAPIKEY=""                         # (REQUIRED) api key from alphavantage.co
+      - MONGOURI="mongodb+srv://user:pass@example.com" # (OPTIONAL) set if you don't want to use the packaged database
     restart: unless-stopped
 
 ```
