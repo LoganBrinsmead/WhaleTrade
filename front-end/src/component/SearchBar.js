@@ -20,7 +20,6 @@ const SearchBar = ({ setSearchQuery }) => {
 
 
   const handleSubmit = (event) => {
-    
     event.preventDefault();
     handleQuery();
   };
