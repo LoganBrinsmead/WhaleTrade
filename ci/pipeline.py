@@ -66,8 +66,8 @@ if __name__ == '__main__':
         if args.login:
             dockerLogin()
         anyio.run(pipeline)
-    except: 
-        print('error')
-    finally:
         if args.login:
             dockerLogout()
+    except: 
+        print('Error Running Pipeline')
+        
