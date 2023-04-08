@@ -1,5 +1,5 @@
 anyio
 asyncer
 dagger-io
-decouple
+python-decouple
 argparse
