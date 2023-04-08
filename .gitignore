@@ -3,3 +3,4 @@
 */.env
 dist
 ci/utils/__pycache__
+.idea
