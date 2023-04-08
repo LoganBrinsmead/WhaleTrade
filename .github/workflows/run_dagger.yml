@@ -26,7 +26,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: setup python for dagger pipeline
-        uses: actions/setup-python@v4s
+        uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
