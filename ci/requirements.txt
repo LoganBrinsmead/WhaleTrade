@@ -2,3 +2,4 @@ anyio
 asyncer
 dagger-io
 decouple
+argparse
