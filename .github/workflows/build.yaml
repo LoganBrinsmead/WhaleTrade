@@ -2,7 +2,7 @@ name: Build For Production
 
 on:
   push:
-#    branches: [ 'main' ]
+   branches: [ '' ]
 
 
 jobs:
