@@ -10,9 +10,10 @@ RUN apk add mongodb
 RUN npm install -g forever
 
 # Environment Variables
+ENV SERVER=production
 ENV DEVELOPMENT=false
-ENV MONGOURI="mongodb://localhost:27017"
-ENV PORT="80"
+ENV MONGOURI=mongodb://localhost:27017
+ENV PORT=80
 ENV FINNHUBAPIKEY=""
 ENV ALPHAVANTAGEAPIKEY=""
 

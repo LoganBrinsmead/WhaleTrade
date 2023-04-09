@@ -5,10 +5,10 @@ import argparse
 from utils.dockerlogin import dockerLogin, dockerLogout
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--login", help="Login to dockerhub locally:       True | False", default=True)
-parser.add_argument("--push", help="Build and push image to dockerhub: True | False", default=False)
-parser.add_argument("--export", help="Exports the build directory:     True | False", default=True)
 parser.add_argument("--tag", help="The tag for the container image: ", default="develop")
+parser.add_argument("--no-login", help="do not handle registry login w/ this script", action='store_true')
+parser.add_argument("-e", "--export", help="export a build directory 'dist' that contains the final build files", action='store_true')
+parser.add_argument("-p", "--push", help="push the image to docker hub", action='store_true')
 
 args = parser.parse_args()
 
@@ -26,7 +26,7 @@ async def pipeline():
                 .with_exec(["npm", "run", "build"])
         )
         # await npm front-end build script
-        build_output = await web.stdout()
+        build_output = await web.exit_code()
         # save contents of build dir for later
         public_src = web.directory("./build")
         print('react-scripts build finished...Bundeling Server...')
@@ -44,10 +44,11 @@ async def pipeline():
         dist_src = api.directory("./dist")
         
         # export bundle to host
-        if args.export == True or args.export is None:
+        if args.export:
             await dist_src.export("./dist")
 
-        if args.push == True:
+        # build & push image to docker hub
+        if args.push:
             print('Building & Push Docker Image')
             build = (
                 client.container()
@@ -58,6 +59,7 @@ async def pipeline():
                     .publish(f"docker.io/whaletrade/whaletrade:{args.tag}")
             )
             await build
+            print(f'Pushed Image to Dockerhub w/ tag: {args.tag}')
 
     print('Finished Build Pipeline...')
 
@@ -65,10 +67,10 @@ async def pipeline():
 if __name__ == '__main__':
     print('running....')
     try:
-        if args.login:
+        if not args.no_login:
             dockerLogin()
         anyio.run(pipeline)
-        if args.login:
+        if not args.no_login:
             dockerLogout()
     except: 
         print('Error Running Pipeline')

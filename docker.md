@@ -2,7 +2,6 @@
 
 > See [Github](https://github.com/LoganBrinsmead/WhaleTrade) for more information
 
-![ProjectLogo](https://github.com/LoganBrinsmead/WhaleTrade/blob/dev/front-end/src/component/logo/typelogo-full-color_white.png)
 <hr>
 
 ## Usage
