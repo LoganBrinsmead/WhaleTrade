@@ -15,7 +15,9 @@ args = parser.parse_args()
 async def pipeline():
     async with dagger.Connection(dagger.Config(log_output=sys.stderr)) as client:
         print('Starting Pipeline')
+        # get project source
         src = client.host().directory(".")
+        # install deps & run react-scripts build
         web = (
             client.container().from_("node:18-alpine3.16")
                 .with_mounted_directory("/app", src)
@@ -27,7 +29,7 @@ async def pipeline():
         build_output = await web.stdout()
         # save contents of build dir for later
         public_src = web.directory("./build")
-        print('react-script build finished...Bundeling Server...')
+        print('react-scripts build finished...Bundeling Server...')
         # bundle backend api
         api = (
             client.container().from_("node:18-alpine3.16")
@@ -70,4 +72,5 @@ if __name__ == '__main__':
             dockerLogout()
     except: 
         print('Error Running Pipeline')
+        sys.exit(3)
         

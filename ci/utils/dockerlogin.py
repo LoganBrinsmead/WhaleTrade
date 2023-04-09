@@ -4,6 +4,7 @@ from decouple import config
 
 
 def dockerLogin():
+    print('docker login')
     USERNAME = os.getenv('DOCKERHUB_USERNAME')
     TOKEN = os.getenv('DOCKERHUB_TOKEN')
 
@@ -18,6 +19,7 @@ def dockerLogin():
 
 
 def dockerLogout():
+    print('docker logout')
     if os.system('docker logout') != 0:
         print('Error docker logout failed')
         sys.exit(1)
