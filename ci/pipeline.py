@@ -58,7 +58,7 @@ async def pipeline():
                 client.container()
                     .with_mounted_directory("/app", src)
                     .with_workdir("/app")
-                    .with_directory("/dist", dist_src)
+                    .with_directory("/app/dist", dist_src)
                     .build(src)
                     .publish(f"docker.io/whaletrade/whaletrade:{args.tag}")
             )
