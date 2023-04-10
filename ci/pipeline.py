@@ -29,7 +29,7 @@ async def pipeline():
         await web.exit_code()
         # save contents of build dir for later
         public_src = web.directory("./build")
-        print('react-scripts build finished...Bundeling Server...')
+        print('react-scripts build finished...Bundling Server...')
         # bundle backend api
         api = (
             client.container().from_("node:18-alpine")

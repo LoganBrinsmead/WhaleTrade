@@ -10,7 +10,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // log incoming requests
 app.use((req, res, next) => {
@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // import api router
@@ -31,15 +31,14 @@ if (process.env.SERVER === 'production') {
     console.log('Starting Production Server')
     http.createServer(app)
         .listen(PORT, () => {
-            console.log(`starting https server: ${PORT}`)
+            console.log(`starting http server: ${PORT}`)
         });
     https.createServer(app)
         .listen(443, () => {
-            console.log(`starting https server`)
+            console.log(`starting https server: 443`)
         });
 }
 else {
-    // start development server 
     console.log('Starting Development Server')
     app.listen(PORT, () => {
         console.log(`Starting server on port: ${PORT}`);

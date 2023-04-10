@@ -19,8 +19,8 @@ ENV ALPHAVANTAGEAPIKEY=""
 
 # Copy bundle and static build files
 WORKDIR /server
-COPY ./dist /server/dist
+COPY ./dist/ /server/
 
 # use pm to run server - needs to be configured for logging
 # run forever in foreground
-CMD ["forever", "dist/whaletrade.bundle.js"]
+CMD ["forever", "whaletrade.bundle.js"]

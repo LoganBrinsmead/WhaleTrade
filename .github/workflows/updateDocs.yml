@@ -4,16 +4,16 @@ on:
   push:
     branches: ['main']
 
-  jobs: 
-    update_dockerhub_readme:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
-        - name: Docker Hub Description
-          uses: peter-evans/dockerhub-description@v3
-          with:
-            username: ${{ secrets.DOCKERHUB_USERNAME }}
-            password: ${{ secrets.DOCKERHUB_TOKEN }}
-            repository: whaletrade/whaletrade
-            short-description: A Social Paper Trading App
-            readme-filepath: ./docker.md
+jobs: 
+  update_dockerhub_readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: whaletrade/whaletrade
+          short-description: A Social Paper Trading App
+          readme-filepath: ./docker.md
