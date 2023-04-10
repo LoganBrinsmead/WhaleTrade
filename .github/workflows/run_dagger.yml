@@ -31,12 +31,12 @@ jobs:
           python-version: '3.10'
       - run: |
           pip install -r ci/requirements.txt
-          python ci/pipeline.py --no-login --push --tag=${{ env.DOCKER_IMAGE_TAG}} --export
+          python ci/pipeline.py --no-login --push --tag=${{ env.DOCKER_IMAGE_TAG}} --export 
 
-      - name: upload bundle as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: server-bundle
-          path: ./dist
-          retention-days: 1
+      # - name: upload bundle as artifact
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: server-bundle
+      #     path: ./dist
+      #     retention-days: 1
 
