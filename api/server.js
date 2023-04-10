@@ -34,7 +34,7 @@ if (process.env.SERVER === 'production') {
             console.log(`starting https server: ${PORT}`)
         });
     https.createServer(app)
-        .listen(8081, () => {
+        .listen(443, () => {
             console.log(`starting https server`)
         });
 }

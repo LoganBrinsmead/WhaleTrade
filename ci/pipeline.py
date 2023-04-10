@@ -26,7 +26,7 @@ async def pipeline():
                 .with_exec(["npm", "run", "build"])
         )
         # await npm front-end build script
-        build_output = await web.exit_code()
+        await web.exit_code()
         # save contents of build dir for later
         public_src = web.directory("./build")
         print('react-scripts build finished...Bundeling Server...')
@@ -39,13 +39,17 @@ async def pipeline():
                 .with_exec(["npm", "install"])
                 .with_exec(["npm", "run", "build"])
         )
-        build_output = await api.exit_code()
+        # await build script for backend api
+        await api.exit_code()
         # save bundled server
         dist_src = api.directory("./dist")
         
         # export bundle to host
         if args.export:
-            await dist_src.export("./dist")
+            cr1 = await dist_src.export("./dist")
+            if not cr1:
+                print('Failed to export final bundle to host.')
+                sys.exit(10)
 
         # build & push image to docker hub
         if args.push:
@@ -58,7 +62,10 @@ async def pipeline():
                     .build(src)
                     .publish(f"docker.io/whaletrade/whaletrade:{args.tag}")
             )
-            await build
+            cr2 = await build
+            if not cr2:
+                print('Failed to push or build docker container')
+                sys.exit(11)
             print(f'Pushed Image to Dockerhub w/ tag: {args.tag}')
 
     print('Finished Build Pipeline...')
