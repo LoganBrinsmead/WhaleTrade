@@ -2,7 +2,7 @@ name: Run Dagger Build Pipeline
 
 on:
   push:
-    branches: [ 'main', 'anthonyM' ]
+    branches: [ 'main', 'dev', 'anthonyM' ]
 
 jobs:
   dagger:
@@ -16,7 +16,7 @@ jobs:
           if [[ $GITHUB_REF == 'refs/head/main' ]]; then
             echo "DOCKER_IMAGE_TAG=latest" >> "$GITHUB_ENV"
           else
-            echo "DOCKER_IMAGE_TAG=develop" >> "$GITHUB_ENV"
+            echo "DOCKER_IMAGE_TAG=dev" >> "$GITHUB_ENV"
           fi
 
       - name: Login to Docker Hub
@@ -31,7 +31,7 @@ jobs:
           python-version: '3.10'
       - run: |
           pip install -r ci/requirements.txt
-          python ci/pipeline.py --no-login --push --tag=${{ env.DOCKER_IMAGE_TAG}}
+          python ci/pipeline.py --no-login --push --tag=${{ env.DOCKER_IMAGE_TAG}} --export
 
       - name: upload bundle as artifact
         uses: actions/upload-artifact@v3

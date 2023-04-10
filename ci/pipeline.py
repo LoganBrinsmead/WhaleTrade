@@ -19,7 +19,7 @@ async def pipeline():
         src = client.host().directory(".")
         # install deps & run react-scripts build
         web = (
-            client.container().from_("node:18-alpine3.16")
+            client.container().from_("node:18-alpine")
                 .with_mounted_directory("/app", src)
                 .with_workdir("/app/front-end")
                 .with_exec(["npm", "install"])
@@ -32,7 +32,7 @@ async def pipeline():
         print('react-scripts build finished...Bundeling Server...')
         # bundle backend api
         api = (
-            client.container().from_("node:18-alpine3.16")
+            client.container().from_("node:18-alpine")
                 .with_mounted_directory("/app", src)
                 .with_workdir("/app/api")
                 .with_directory("/app/api/public", public_src)
