@@ -7,7 +7,6 @@ from utils.dockerlogin import dockerLogin, dockerLogout
 parser = argparse.ArgumentParser()
 parser.add_argument("--tag", help="The tag for the container image: ", default="develop")
 parser.add_argument("--no-login", help="do not handle registry login w/ this script", action='store_true')
-parser.add_argument("-e", "--export", help="export a build directory 'dist' that contains the final build files", action='store_true')
 parser.add_argument("-p", "--push", help="push the image to docker hub", action='store_true')
 
 args = parser.parse_args()
@@ -25,7 +24,7 @@ async def pipeline():
                 .with_exec(["npm", "install"])
                 .with_exec(["npm", "run", "build"])
         )
-        # await npm front-end build script
+        # await build script for front-end
         await web.exit_code()
         # save contents of build dir for later
         public_src = web.directory("./build")
@@ -43,30 +42,20 @@ async def pipeline():
         await api.exit_code()
         # save bundled server
         dist_src = api.directory("./dist")
-        
-        # export bundle to host
-        if args.export:
-            cr1 = await dist_src.export("./dist")
-            if not cr1:
-                print('Failed to export final bundle to host.')
-                sys.exit(10)
-
+        await dist_src.export("./dist")
         # build & push image to docker hub
-        if args.push:
-            print('Building & Push Docker Image')
-            build = (
-                client.container()
-                    .with_mounted_directory("/app", src)
-                    .with_workdir("/app")
-                    .with_directory("/app/dist", dist_src)
-                    .build(src)
-                    .publish(f"docker.io/whaletrade/whaletrade:{args.tag}")
-            )
-            cr2 = await build
-            if not cr2:
-                print('Failed to push or build docker container')
-                sys.exit(11)
-            print(f'Pushed Image to Dockerhub w/ tag: {args.tag}')
+        # if args.push:
+        #     print('Building & Push Docker Image')
+        #     build = (
+        #         client.container().from_("ubuntu:latest")
+        #             .with_mounted_directory("/app", src)
+        #             .with_workdir("/app")
+        #             .with_mounted_directory("/app/dist", dist_src)
+        #             .build(src)
+        #             .publish(f"docker.io/whaletrade/whaletrade:{args.tag}")
+        #     )
+        #     await build
+        #     print(f'Pushed Image to Dockerhub w/ tag: {args.tag}')
 
     print('Finished Build Pipeline...')
 

@@ -33,3 +33,9 @@ jobs:
           python-version: '3.10'
       - run: pip install -r ci/requirements.txt
       - run: python ci/pipeline.py --no-login --push --tag=${{ env.DOCKER_IMAGE_TAG }}
+
+      - name: build & push image
+        uses: actions/build-push-action@v3
+        with:
+          push: true
+          tags: whaletrade/whaletrade:${{ env.DOCKER_IMAGE_TAG }}
