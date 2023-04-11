@@ -2,7 +2,7 @@ name: Build
 
 on:
   push:
-    branches: [ 'main', 'dev', 'anthonyM' ]
+    branches: [ 'main', 'dev' ]
 
 jobs:
   dagger:
