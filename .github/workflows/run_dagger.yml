@@ -37,7 +37,9 @@ jobs:
       - run: ls -alt
 
       - name: build & push image
-        uses: docker/build-push-action@v3
-        with:
-          push: true
-          tags: whaletrade/whaletrade:${{ env.DOCKER_IMAGE_TAG }}
+        run: docker build -t whaletrade/whaletrade:${{ env.DOCKER_IMAGE_TAG }} .
+        run: docker push whaletrade/whaletrade:${{ env.DOCKER_IMAGE_TAG }}
+      #   uses: docker/build-push-action@v3
+      #   with:
+      #     push: true
+      #     tags: whaletrade/whaletrade:${{ env.DOCKER_IMAGE_TAG }}
