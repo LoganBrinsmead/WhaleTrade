@@ -3,8 +3,8 @@
 
 ![ProjectLogo](https://github.com/LoganBrinsmead/WhaleTrade/blob/dev/front-end/src/component/logo/typelogo-full-color_white.png)
 
-![Tests](https://github.com/LoganBrinsmead/WhaleTrade/actions/workflows/api_testing.yml/badge.svg)
-![Build](https://github.com/LoganBrinsmead/WhaleTrade/actions/workflows/build.yaml/badge.svg)
+![Tests](https://github.com/LoganBrinsmead/WhaleTrade/actions/workflows/api_testing.yml/badge.svg?branch=main)
+![Build](https://github.com/LoganBrinsmead/WhaleTrade/actions/workflows/run_dagger.yml/badge.svg?branch=main)
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/whaletrade/whaletrade.svg)](https://hub.docker.com/r/whaletrade/whaletrade)
 
