@@ -43,6 +43,7 @@ async def pipeline():
         # save bundled server
         dist_src = api.directory("./dist")
         await dist_src.export("./dist")
+        
         # build & push image to docker hub
         # if args.push:
         #     print('Building & Push Docker Image')
