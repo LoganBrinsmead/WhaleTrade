@@ -26,7 +26,7 @@ jobs:
           npm install
           npm test
         working-directory: ./api
-        with:
+        env:
           DEVELOPMENT: true
           FINNHUBAPIKEY: ${{ secrets.FINNHUBAPIKEY }}
           ALPHAVANTAGEAPIKEY: ${{ secrets.ALPHAVANTAGEAPIKEY }}
