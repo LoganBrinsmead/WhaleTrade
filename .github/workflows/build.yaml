@@ -25,7 +25,7 @@ jobs:
       - name: copy front end build dir
         run: |
           rm ./api/public/index.html
-          copy -r ./front-end/build/* ./api/public/*
+          cp -r ./front-end/build/* ./api/public/*
 
       - name: bundle backend with webpack
         run: |
