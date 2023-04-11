@@ -17,7 +17,6 @@ crypto_router.get('/exchanges', (req, res) => {
 });
 
 crypto_router.get('/symbols&exchange', (req, res) => {
-    // const exchange = req.params.exchange;
     const exchange = req.query.exchange;
     finnhub_api.getCryptoSymbols(exchange,apiKey)
     .then((data) => {

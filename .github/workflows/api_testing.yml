@@ -1,4 +1,4 @@
-name: WhaleTrade backend API tests
+name: Tests
 
 on:
   pull_request:
