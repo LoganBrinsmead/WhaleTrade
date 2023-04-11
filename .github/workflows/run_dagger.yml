@@ -32,11 +32,4 @@ jobs:
         with:
           python-version: '3.10'
       - run: pip install -r ci/requirements.txt
-      - run: python ci/pipeline.py --no-login --push --tag=${{ env.DOCKER_IMAGE_TAG }}
-
-      - run: ls -alt
-
-      - name: build & push image
-        run: | 
-          docker build -t whaletrade/whaletrade:${{ env.DOCKER_IMAGE_TAG }} .
-          docker push whaletrade/whaletrade:${{ env.DOCKER_IMAGE_TAG }}
+      - run: python ci/pipeline.py --no-login --tag=${{ env.DOCKER_IMAGE_TAG }}
