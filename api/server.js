@@ -44,3 +44,5 @@ else {
         console.log(`Starting server on port: ${PORT}`);
     });
 }
+
+module.exports = app;
