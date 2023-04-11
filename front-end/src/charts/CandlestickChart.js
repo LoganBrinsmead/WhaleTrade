@@ -2,25 +2,13 @@ import React, { Component } from 'react';
 import Chart from 'react-apexcharts';
 import dayjs from 'dayjs';
 import Box from '@mui/material/Box'
+//import { getIntraDayData, getWeeklyData, getMonthlyData } from '../services/api/whaltradApi'; 
 
 class CandlestickChart extends Component {
     constructor(props) {
         super(props);
-        // Get data for current day with 1 min resolution.
-        const currentDate_mili = new Date(Date.now())
-        const [
-          hourUnix_mili, 
-          minutesUnix_mili, 
-          secUnix_mili
-        ] = [
-          currentDate_mili.getHours() * 3600 * 1000,
-          currentDate_mili.getMinutes() * 60 *1000,
-          currentDate_mili.getSeconds() * 1000
-        ]
-        const partialDayUnix_mili = hourUnix_mili + minutesUnix_mili + secUnix_mili;
-        const endDate_mili = currentDate_mili - partialDayUnix_mili;
         // *Will be called twice due to React.
-        this.chartData = this.getDataFromAPI(this.props.stockSymbol, "1", Date.now(), endDate_mili);
+        this.chartData = this.getDataFromAPI(this.props.stockSymbol, "1min", "intraDay");
 
         this.currentTimeline = 'one_day';
 
@@ -80,18 +68,37 @@ class CandlestickChart extends Component {
                 }
               ]
             },
+            legend: {
+              show: false
+            },
+            grid: {
+              show: false
+            },      
             tooltip: {
               enabled: true,
+              fixed: {
+                enabled: true,
+                position: 'topLeft',
+                offsetY: 55
+              }
+            },
+            dataLabels: {
+              enabled: false
             },
             xaxis: {
+              axisTicks: {
+                show: false
+              },              
               type: 'category',
               labels: {
+                show: false,
                 formatter: function(val) {
                   return dayjs(val).format('MMM DD HH:mm');
                 }
               }
             },
             yaxis: {
+              show: false,
               tooltip: {
                 enabled: true
               }
@@ -110,8 +117,8 @@ class CandlestickChart extends Component {
       /**finnhub.io API */
       /************************************************************************ */
       
-      getDataFromAPI = (symbol, resolution, from, to) => {
-        console.log('In getDataFromAPI: ', symbol, resolution, from, to);        
+      getDataFromAPI = (symbol, resolution, timeInterval) => {
+        console.log('In getDataFromAPI: ', symbol, resolution, timeInterval);        
         
         // Placeholder for API.
         // Fetched data goes here.
@@ -148,7 +155,39 @@ class CandlestickChart extends Component {
             20730608
           ]
         };
-
+        /*
+        if (timeInterval == "intraDay"){
+          
+          getIntraDayData(symbol, resolution, "compact")
+          .then( res => {
+            console.log(res.data);
+            return parseData(res.data, `Time Series (${resolution})`);
+          })
+          .catch( error => {
+            console.log(error);
+          })
+        } else if (timeInterval == "weekly"){
+          
+          getWeeklyData(symbol)
+          .then( res => {
+            console.log(res.data);
+            return parseData(res.data, "Weekly Time Series");
+          })
+          .catch( error => {
+            console.log(error);
+          })
+        } else if (timeInterval == "monthly"){
+          
+          getDaylyData(symbol)
+          .then( res => {
+            console.log(res.data);
+            return parseData(res.data, "Monthly Time Series");
+          })
+          .catch( error => {
+            console.log(error);
+          })
+        }
+        */
         let parsedData = [];
         for (var i = 0; i < dataFromAPI['t'].length; i++){
           // Convert UNIX timestamp from sec to milisec precision for Apexcharts.
@@ -164,6 +203,29 @@ class CandlestickChart extends Component {
           );
         }
         //console.log(parsedData);
+        return parsedData;
+      }
+
+      // Time Series (<resolution>)
+      // Weekly Time Series
+      // Monthly Time Series
+      parseData = (responseData, timeSeries) => {
+        let parsedData = [];
+        const timeSeriesData = responseData[timeSeries];
+        
+        for (const time in timeSeriesData){
+          const date = new Date(time);
+
+          parsedData.push({
+            "date": date.getTime(),
+            "open": timeSeriesData[time]["1. open"],
+            "high": timeSeriesData[time]["2. high"],
+            "low": timeSeriesData[time]["3. low"],
+            "close": timeSeriesData[time]["4. close"],
+            "volume": timeSeriesData[time]["5. volume"]
+          });
+        }
+
         return parsedData;
       }
                 
@@ -358,6 +420,30 @@ class CandlestickChart extends Component {
             break
             default:
         }
+        /*
+        switch(timeline){
+          case 'intraDay':
+            console.log('switch intraday');
+            const newData = this.getDataFromAPI(
+              this.props.symbol, 
+              resolution === undefined ? "1min" : resolution, 
+              timeline
+            );
+            this.setStateForUpdate(newData);
+            break
+          case 'weekly':
+            console.log('switch weekly');
+            const newData = this.getDataFromAPI(this.props.symbol, undefined, timeline);
+            this.setStateForUpdate(newData);
+            break
+          case 'monthly':
+            console.log('switch monthly');
+            const newData = this.getDataFromAPI(this.props.symbol, undefined, timeline);
+            this.setStateForUpdate(newData);
+            break
+          default:
+        }
+        */
       }
 
       setStateForUpdate = (endDate_mili, resolution) => {
@@ -377,9 +463,7 @@ class CandlestickChart extends Component {
         const endDate_sec = endDate_mili / 1000;
         const parsedData = this.getDataFromAPI(
           this.props.stockSymbol, 
-          resolution, 
-          Date.now(), 
-          endDate_sec
+          resolution
         );
         // Get date.
         const objectsInInterval = parsedData.filter(obj => obj['date'] >= endDate_mili);
@@ -402,7 +486,7 @@ class CandlestickChart extends Component {
         }
         return data;
       }
-
+      /*
       componentDidMount = () => {
         fetch('http://localhost:9000/api/v1/market/stocks/candlestick', {
           method: 'POST',
@@ -425,7 +509,7 @@ class CandlestickChart extends Component {
       parsedDataFromAPI = (data) => {
         
       }
-
+      */
       render() {
         return (
           <Box>
