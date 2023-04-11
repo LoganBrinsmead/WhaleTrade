@@ -35,7 +35,7 @@ jobs:
       - run: python ci/pipeline.py --no-login --push --tag=${{ env.DOCKER_IMAGE_TAG }}
 
       - name: build & push image
-        uses: actions/build-push-action@v3
+        uses: docker/build-push-action@v3
         with:
           push: true
           tags: whaletrade/whaletrade:${{ env.DOCKER_IMAGE_TAG }}
