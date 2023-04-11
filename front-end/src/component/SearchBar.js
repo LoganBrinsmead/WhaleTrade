@@ -1,23 +1,25 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Box, Grid, IconButton, TextField } from "@mui/material";
-// import SearchIcon from "@mui/icons-material/Search";
 import { Search } from "@mui/icons-material"
 
+import { getStockLookup } from '../services/api/whaletradApi';
 
-const SearchBar = ({ setSearchQuery }) => {
+const SearchBar = () => {
   const [searchText, setSearchText] = useState("");
   const [searchData, setSearchData] = useState({});
 
+  console.log(searchData);
 
   const handleQuery = () => {
-    fetch(`http://localhost:9000/api/v1/market/stocks/search?=${searchText}`)
-      .then( res => res.json())
-      .then( data => {
-        setSearchData(data);
-        console.log(data);
-      }).catch( err => console.log(err));
+    getStockLookup(searchText)
+        .then( response => {
+          console.log(response.data);
+          setSearchData(response.data);
+        })
+        .catch( error => {
+          console.log(error);
+        })
   }
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
