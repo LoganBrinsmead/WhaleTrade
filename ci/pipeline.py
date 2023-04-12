@@ -20,7 +20,7 @@ async def pipeline_v2():
         dockerfile = src.file("Dockerfile")
         # database config
         mongodb_config = src.file("./database/mongo_config.yml")
-        
+
         # run react build script
         web = (
             client.container().from_("node:18-alpine")
@@ -68,7 +68,6 @@ async def pipeline_v2():
         )
         await push
     print('pipeline finished...')
-
 
 if __name__ == '__main__':
     print('running....')
