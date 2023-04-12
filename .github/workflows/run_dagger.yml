@@ -13,8 +13,6 @@ jobs:
 
       - name: set image tag from branch
         run: |
-          if [[ $GITHUB_REF == 'refs/head/main' ]]; then
-            echo "DOCKER_IMAGE_TAG=latest" >> "$GITHUB_ENV"
           elif [[ $GITHUB_REF == 'refs/head/dev' ]]; then
             echo "DOCKER_IMAGE_TAG=dev" >> "$GITHUB_ENV"
           else
