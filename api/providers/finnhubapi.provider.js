@@ -81,7 +81,7 @@ async function getTrend(symbol, apiKey) {
 }
 
 async function getCryptoExchanges(apiKey) {
-    const url = `${base_url}/crypto/exchange&token=${apiKey}`;
+    const url = `${base_url}/crypto/exchange?token=${apiKey}`;
     let res = await fetch(url, {
         method: 'GET',
     });
