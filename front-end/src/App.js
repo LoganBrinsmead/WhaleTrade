@@ -1,6 +1,7 @@
 import React from 'react';
 import CandlestickChart from './charts/CandlestickChart';
 import './App.css';
+import Header from './component/Header';
 
 function App () {
   return (
@@ -13,7 +14,7 @@ function App () {
 // FOR TESTING: visualizing the test chart.
 function chart () {
   return (
-    <div>
+    <div className="font-face-rhd">
       <h1>Welcome to Whale Trade</h1>
       <div>
         <CandlestickChart
