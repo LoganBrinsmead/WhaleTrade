@@ -15,7 +15,8 @@ const chartStyle = {
   width: '80%',
   position: "absolute",
   left: '20%',
-  border: "1px solid black"
+  border: "1px solid black",
+ // height: 400
 };
 
 const sideBarStyle = {
@@ -34,7 +35,7 @@ export default function Body(){
       <Box sx={chartStyle}>
         <CandlestickChart
           type="candlestick" 
-          height={400}
+          height="600"
           width="100%"
           stockSymbol="AAPL" 
         />

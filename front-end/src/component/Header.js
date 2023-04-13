@@ -43,7 +43,7 @@ const profileStyle = {
 const hambutgerStyle = {
   position: "absolute", 
   right: "5px",
-  top : '10px',
+  top : '6px',
 }
 
 
@@ -64,9 +64,10 @@ function Header()  {
       </Box>
       
       <Box sx = {hambutgerStyle}>
-      
+        <HamburgerMenu />
       </Box>
-     
+        
+
     
     </Box>
   

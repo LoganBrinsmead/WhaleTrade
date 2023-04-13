@@ -1,44 +1,55 @@
-import * as React from 'react';
-import IconButton from '@mui/material/IconButton';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import React from 'react';
+import { IconButton, Menu, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
-export default function Hamburger(props) {
-  const { options, onClick } = props;
-  const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleMenuClick = (event) => {
+  
+  const HamburgerMenu = () => {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-  };
+    };
 
-  const handleMenuClose = () => {
+
+    const handleClose = () => {
     setAnchorEl(null);
+    };
+ 
+    return (
+      <div>
+        <IconButton
+          size="large"
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          sx={{ mr: 2 }}
+          onClick={handleClick}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Menu
+          id="menu-appbar"
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem onClick={handleClose}>Item 1</MenuItem>
+          <MenuItem onClick={handleClose}>Item 2</MenuItem>
+          <MenuItem onClick={handleClose}>Item 3</MenuItem>
+        </Menu>
+      </div>
+    );
   };
-
-  return (
-    <React.Fragment>
-      <IconButton
-        size="large"
-        edge="start"
-        color="inherit"
-        aria-label="menu"
-        onClick={handleMenuClick}
-        sx={{ mr: 2 }}
-      >
-        <MenuIcon />
-      </IconButton>
-      <Menu
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleMenuClose}
-      >
-        {options.map((option, index) => (
-          <MenuItem key={index} onClick={() => {onClick(option); handleMenuClose();}}>
-            {option}
-          </MenuItem>
-        ))}
-      </Menu>
-    </React.Fragment>
-  );
-}
+  
+  export default HamburgerMenu;
+  
