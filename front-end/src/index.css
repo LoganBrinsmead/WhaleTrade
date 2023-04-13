@@ -1,0 +1,15 @@
+@font-face {
+    font-family: RedHatText;
+    src: url('./fonts/red_hat_text/RedHatText-Regular.ttf');
+    font-stretch: normal;
+    font-style: oblique;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: RedHatDisplay;
+    src: url('./fonts/red_hat_display/RedHatDisplay-Bold.ttf');
+    font-stretch: normal;
+    font-style: oblique;
+    font-weight: bold;
+}

@@ -1,9 +1,10 @@
 import React from 'react';
 import CandlestickChart from './charts/CandlestickChart';
+import './App.css';
 
 function App () {
   return (
-    <div>
+    <div className="font-face-rht">
           <Header />
     </div>
   )
