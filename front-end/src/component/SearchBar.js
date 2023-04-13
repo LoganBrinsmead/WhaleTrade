@@ -1,13 +1,29 @@
 import { useState } from "react";
 import { Box, Grid, IconButton, TextField } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
+import { Search } from "@mui/icons-material"
 
-const SearchBar = ({ setSearchQuery }) => {
+import { getStockLookup } from '../services/api/whaletradApi';
+
+const SearchBar = () => {
   const [searchText, setSearchText] = useState("");
+  const [searchData, setSearchData] = useState({});
+
+  console.log(searchData);
+
+  const handleQuery = () => {
+    getStockLookup(searchText)
+        .then( response => {
+          console.log(response.data);
+          setSearchData(response.data);
+        })
+        .catch( error => {
+          console.log(error);
+        })
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setSearchQuery(searchText);
+    handleQuery();
   };
 
   const handleChange = (event) => {
@@ -31,7 +47,7 @@ const SearchBar = ({ setSearchQuery }) => {
           </Grid>
           <Grid item>
             <IconButton type="submit" aria-label="search">
-              <SearchIcon />
+              <Search />
             </IconButton>
           </Grid>
         </Grid>

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import CandlestickChart from './charts/CandlestickChart';
 import './App.css';
 import Header from './component/Header';
@@ -10,6 +11,7 @@ function App () {
     </div>
   )
 }
+
 
 // FOR TESTING: visualizing the test chart.
 function chart () {

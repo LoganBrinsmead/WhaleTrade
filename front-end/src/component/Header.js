@@ -3,7 +3,7 @@ import Box from '@mui/material/Box'
 import Logo from './Logo'
 import SearchBar from "./SearchBar";
 import Profile from "./Profile";
-import HamburgerMenu from "./HambergerMenu"
+// import HamburgerMenu from "./HambergerMenu"
 
 
 
@@ -40,11 +40,11 @@ const profileStyle = {
 
 
 
-const hambutgerStyle = {
-  position: "absolute", 
-  right: "5px",
-  top : '10px',
-}
+// const hambutgerStyle = {
+//   position: "absolute",
+//   right: "5px",
+//   top : '10px',
+// }
 
 
 
@@ -63,9 +63,9 @@ function Header()  {
         <Profile />
       </Box>
       
-      <Box sx = {hambutgerStyle}>
-        <HamburgerMenu />
-      </Box>
+      {/*<Box sx = {hambutgerStyle}>*/}
+      {/*  <HamburgerMenu />*/}
+      {/*</Box>*/}
      
     
     </Box>

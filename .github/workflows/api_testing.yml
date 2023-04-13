@@ -1,11 +1,11 @@
-name: WhaleTrade backend API tests
+name: Tests
 
 on:
   pull_request:
-    branches: [ dev,main ]
+    branches: [ 'dev', 'main' ]
 
 jobs:
-  build:
+  api_tests:
 
     runs-on: ubuntu-latest
 
@@ -15,7 +15,30 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
+
+      - name: Setup Mongodb
+        uses: supercharge/mongodb-github-action@1.8.0
+        with:
+          mongodb-version: "6.0"
+
+      - name: Run API tests
+        run: |
+          npm install
+          npm test
+        working-directory: ./api
+        # env:
+        #   DEVELOPMENT: true
+        #   FINNHUBAPIKEY: ${{ secrets.FINNHUBAPIKEY }}
+        #   ALPHAVANTAGEAPIKEY: ${{ secrets.ALPHAVANTAGEAPIKEY }}
+        #   MONGOURI: "mongodb://localhost:27017"
+
+  ui_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
       - run: npm install
-        working-directory: ./api
-      - run: npm test
-        working-directory: ./api
+        working-directory: ./front-end
