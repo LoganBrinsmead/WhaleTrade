@@ -6,8 +6,8 @@ import Body from './component/Body'
 function App () {
   return (
     <div>
-          <Header />
-          <Body/>
+        <Header />
+        <Body/>
     </div>
   )
 }
