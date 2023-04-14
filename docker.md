@@ -43,7 +43,7 @@ services:
       - PORT=80                                        # (OPTIONAL) change the port of the server
       - FINNHUBAPIKEY=<secret>                         # (REQUIRED) api key from finnhub.io
       - APLPHAVANTAGEAPIKEY=<secret>                   # (REQUIRED) api key from alphavantage.co
-      - MONGOURI="mongodb+srv://user:pass@example.com" # (OPTIONAL) set if you don't want to use the packaged database
+      - MONGOURI=mongodb+srv://user:pass@example.com   # (OPTIONAL) set if you don't want to use the packaged database
     restart: unless-stopped
 
 ```
