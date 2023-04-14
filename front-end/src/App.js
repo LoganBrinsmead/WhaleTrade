@@ -1,11 +1,16 @@
 import React from 'react';
 import Header from './component/Header'
-//import CandlestickChart from './charts/CandlestickChart';
+import CandlestickChart from './charts/CandlestickChart';
 
 function App () {
   return (
     <div>
-        <Header />        
+        <Header />
+        <CandlestickChart
+           type="candlestick"
+           height={650}
+           stockSymbol="aapl"
+        />        
     </div>
   )
 }

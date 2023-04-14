@@ -169,8 +169,7 @@ class CandlestickChart extends Component {
           return parsedData;
         }
 
-        let parsedData = [];
-        const foo = async () => {
+        const foo = () => {
           if (timeInterval === "intraDay"){
             
             getIntraDayData(symbol, resolution, "compact")
@@ -210,8 +209,9 @@ class CandlestickChart extends Component {
           }
         }
 
-        const foo2 = async () => { await foo(); }
-        foo2();
+        foo();
+        //const foo2 = async () => { await foo(); }
+        //foo2();
       }
                 
       /************************************************************************ */
