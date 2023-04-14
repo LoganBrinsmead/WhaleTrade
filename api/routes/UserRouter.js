@@ -56,33 +56,37 @@ userRouter.post("/buyStock", async (req, res) => {
         // start the mongoose session
         const session = await mongoose.startSession();
 
-        User.findOne({ 'portfolios.name': { $elemMatch: { name: portfolioName } } }, function (err, portfolio) {
-            // there isn't a portfolio with that name in the user's portfolios
-            if (err) {
-                return res.status(400).json({ Error: "Something went wrong: the user does not have a portfolio with that name." })
-            }
-
-            // the user does have a portfolio with that name
-            portfolio.findOne({ 'Stock.ticker': { $elemMatch: { ticker: stockTicker } } }, async function (err, stock) {
-                // the portfolio does not have that stock, so add it
+        User.findOne({ 'username': { $elemMatch: { name: accountName } } } , async function (err, foundUser) {
+            User.findOne({ 'portfolios.name': { $elemMatch: { name: portfolioName } } }, async function (err, portfolio) {
+                // there isn't a portfolio with that name in the user's portfolios
                 if (err) {
-                    // initiate transaction
-                    try {
-                        await session.withTransaction(async () => {
-                            await buyStock(portfolio, stockTicker, quantity, pricePerShare, session);
-
-                        });
-                    } finally {
-                        session.endSession();
-                    }
+                    return res.status(400).json({ Error: "Something went wrong: the user does not have a portfolio with that name." })
                 }
 
-                // the portfolio does have that stock, update the existing market value and number of shares
-                stock.marketValue = stock.marketValue + newPositionValue;
-            })
+                // the user does have a portfolio with that name
+                portfolio.findOne({ 'Stock.ticker': { $elemMatch: { ticker: stockTicker } } }, async function (err, stock) {
+                    // the portfolio does not have that stock, so add it
+                    if (err) {
+                        // initiate transaction
+                        try {
+                            await session.withTransaction(async () => {
+                                await buyStock(portfolio, stockTicker, quantity, pricePerShare, session);
 
+                            });
+                        } finally {
+                            session.endSession();
+                        }
+                    }
+
+                    // the portfolio does have that stock, update the existing market value and number of shares
+                    stock.marketValue = stock.marketValue + newPositionValue;
+                })
+
+
+            });
 
         });
+
     } catch (e) {
         console.log(e);
         res.status(500).send("Internal Server Error Occured.");
