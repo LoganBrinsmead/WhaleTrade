@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-
 const stockSchema = new mongoose.Schema({
     ticker: {
         type: String,
@@ -20,4 +19,5 @@ const stockSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model("Stock", stockSchema);
+const Stock = mongoose.model("Stock", stockSchema);
+module.exports = Stock;

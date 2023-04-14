@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-import Stock from "../schema/Stock";
-import Crypto from "../schema/Crypto";
+const Stock = require("./Stock");
+const Crypto = require("./Crypto");
 
 const portfolioSchema = new mongoose.Schema({
     name: {
