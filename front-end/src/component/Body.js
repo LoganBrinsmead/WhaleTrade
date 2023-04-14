@@ -32,6 +32,8 @@ const sideBarStyle = {
 export default function Body(){
   return(
     <Box sx={bodyStyle}>
+
+      
       <Box sx={chartStyle}>
         <CandlestickChart
           type="candlestick" 

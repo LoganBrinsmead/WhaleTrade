@@ -64,7 +64,7 @@ function Header()  {
       </Box>
       
       <Box sx = {hambutgerStyle}>
-        <HamburgerMenu />
+       
       </Box>
         
 
