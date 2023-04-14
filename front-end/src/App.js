@@ -1,13 +1,16 @@
 import React from 'react';
-
+import Header from './component/Header'
 import CandlestickChart from './charts/CandlestickChart';
-import './App.css';
-import Header from './component/Header';
 
 function App () {
   return (
-    <div className="font-face-rht">
-          <Header />
+    <div>
+        <Header />
+        <CandlestickChart
+           type="candlestick"
+           height={650}
+           stockSymbol="aapl"
+        />        
     </div>
   )
 }
@@ -29,4 +32,4 @@ function chart () {
   )
 }
 
-export default chart
+export default App
