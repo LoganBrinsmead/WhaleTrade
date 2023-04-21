@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-const Stock = require("./Stock");
-const Crypto = require("./Crypto");
-const Option = require("./Option");
+const Stock = require("./StockSchema");
+const Crypto = require("./CryptoSchema");
+const Option = require("./OptionSchema");
 
 const tradeSchema = new mongoose.Schema({
     ticker: {
