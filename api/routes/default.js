@@ -1,5 +1,6 @@
 const express = require('express');
 const authRouter = require('./auth');
+const userRouter = require("./UserRouter");
 
 const default_router = express.Router();
 
@@ -16,5 +17,6 @@ default_router.post("/posttest", (req, res) => {
 });
 
 default_router.use("/auth", authRouter);
+default_router.use("/transact", userRouter);
 
 module.exports = default_router;

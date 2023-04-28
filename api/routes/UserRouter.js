@@ -1,6 +1,6 @@
 const express = require("express");
 const userRouter = express.Router();
-import User from "../schema/UserSchema";
+const User  = require("../schema/UserSchema");
 const { Decimal128 } = require('bson');
 
 async function buyStock(Portfolio, stockSymbol, quantity, pricePerShare, session) {
