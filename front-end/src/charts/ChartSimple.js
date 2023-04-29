@@ -106,7 +106,7 @@ class ChartSimple extends Component {
           return parsedData;
         }
 
-        const foo = () => {
+        const getOHLC = () => {
           getIntraDayData(symbol, resolution, "compact")
           .then( res => {
             console.log(res.data);
@@ -119,7 +119,7 @@ class ChartSimple extends Component {
           })
         }
 
-        foo();
+        getOHLC();
       }
  
       /************************************************************************ */

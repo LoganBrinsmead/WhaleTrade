@@ -169,7 +169,7 @@ class CandlestickChart extends Component {
           return parsedData;
         }
 
-        const foo = () => {
+        const getOHLC = () => {
           if (timeInterval === "intraDay"){
             
             getIntraDayData(symbol, resolution, "compact")
@@ -209,9 +209,7 @@ class CandlestickChart extends Component {
           }
         }
 
-        foo();
-        //const foo2 = async () => { await foo(); }
-        //foo2();
+        getOHLC();
       }
                 
       /************************************************************************ */
@@ -354,7 +352,6 @@ class CandlestickChart extends Component {
             <button onClick={()=>this.updateData('intraDay')}>1D</button>
             <button onClick={()=>this.updateData('weekly')}>Weekly</button>
             <button onClick={()=>this.updateData('monthly')}>Monthly</button>
-            <button onClick={()=>this.updateData('all')}>All</button>
             <button></button>
             <button onClick={()=>this.updateData('intraDay', "1min")}>1 min</button>
             <button onClick={()=>this.updateData('intraDay', "5min")}>5 mins</button>
