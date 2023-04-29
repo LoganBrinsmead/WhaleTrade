@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './component/Header'
 import CandlestickChart from './charts/CandlestickChart';
+import ChartSimple from './charts/ChartSimple';
 
 function App () {
   return (
