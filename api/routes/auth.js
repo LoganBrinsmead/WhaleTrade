@@ -22,11 +22,12 @@ authRouter.post("/register", async (req, res) => {
 authRouter.post("/login", async (req, res) => {
     try {
         const session = req.session;
-        const user = await User.findOne({ username: req.body.username });
-        console.log(user);
+        const username = req.body.username;
+        const user = await User.findOne({ username: username });
         if (user) {
-            const cmp = await bcrypt.compare(req.body.password, User.password);
+            const cmp = await bcrypt.compare(req.body.password, user.password);
             if (cmp) {
+                console.log(session);
                 session.username = req.body.username;
                 session.password = req.body.password;
                 res.send("Auth Successful");
