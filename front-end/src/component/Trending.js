@@ -18,9 +18,11 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
         backgroundColor: theme.palette.common.white,
         color: theme.palette.common.black,
         broderBottom: "none",
+        fontSize: 18,
+        fontWeight: 'bold',
     },
     [`&.${tableCellClasses.body}`]: {
-        fontSize: 14, 
+        fontSize: 16, 
         borderBottom: "none",
     }
 }));
@@ -79,8 +81,12 @@ export default function Trending(props) {
                         <TableRow key={`${idx}-${row.symbol}-row`}>
                             <StyledTableCell key={`${idx}-symbol`}>{row.symbol}</StyledTableCell>             
                             <StyledTableCell key={`${idx}-name`}>{row.name}</StyledTableCell>             
-                            <StyledTableCell key={`${idx}-change`}>{row.change}</StyledTableCell>             
-                            <StyledTableCell key={`${idx}-change_p`}>{row.change_p}</StyledTableCell>             
+                            <StyledTableCell key={`${idx}-change`} sx={{ color: (row.change < 0 ? 'red' : 'green') }}>
+                                {row.change}
+                            </StyledTableCell>             
+                            <StyledTableCell key={`${idx}-change_p`} sx={{ color: (row.change_p < 0 ? 'red' : 'green') }}>
+                                {row.change_p} %
+                            </StyledTableCell>             
                             <StyledTableCell key={`${idx}-high`}>{row.high}</StyledTableCell>             
                             <StyledTableCell key={`${idx}-low`}>{row.low}</StyledTableCell>             
                             <StyledTableCell key={`${idx}-open`}>{row.open}</StyledTableCell>             
