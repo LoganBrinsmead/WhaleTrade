@@ -11,7 +11,7 @@ import {
 
 import { tableCellClasses } from '@mui/material/TableCell';
 import { tableRowClasses } from '@mui/material/TableRow';
-// import {  } from '../services/api/whaletradApi';
+import { getStockQuote } from '../services/api/whaletradApi';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -27,24 +27,29 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({}));
 
-
 export default function Trending(props) {
-
     // later derive trending list from database
     const { symbolList } = props; 
     const [ trendingData, setTrendingData ] = useState([]);
 
     useEffect( () => {
-        setTrendingData(symbolList.map( (symbol) => {
-            return {
-                symbol: symbol,
-                name: "Name",
-                change: 0,
-                change_p: 0.00,
-                volume: 0,
-                market_cap: 0,
-            };      
-        }));
+        setTrendingData([]);
+        symbolList.forEach( (symbol) => {
+            getStockQuote(symbol)
+                .then( res => {
+                    setTrendingData(curr => [...curr, {
+                        symbol: symbol,
+                        name: "Name",
+                        change: res.data.d,
+                        change_p: res.data.dp,
+                        high: res.data.h,
+                        low: res.data.l,
+                        open: res.data.o,
+                        prevc: res.data.pc
+                    }]);
+                })
+                .catch( err => console.log(err));
+        });
     },[symbolList]);
    
     if (trendingData.length === 0) {
@@ -54,32 +59,38 @@ export default function Trending(props) {
     }
 
     return (
+        <>
         <TableContainer>
-            <Table sx={{ minWidth: 700 }} aria-label="Trending Stocks">
+            <Table sx={{ minWidth: 100, maxWidth: 400 }} aria-label="Trending Stocks">
                 <TableHead>
                     <TableRow>
                         <StyledTableCell>SYMBOL</StyledTableCell>
                         <StyledTableCell>NAME</StyledTableCell>
                         <StyledTableCell>CHANGE</StyledTableCell>
                         <StyledTableCell>%CHANGE</StyledTableCell>
-                        <StyledTableCell>VOLUME</StyledTableCell>
-                        <StyledTableCell>MARKET CAP</StyledTableCell>
+                        <StyledTableCell>HIGH</StyledTableCell>
+                        <StyledTableCell>LOW</StyledTableCell>
+                        <StyledTableCell>OPEN</StyledTableCell>
+                        <StyledTableCell>LAST CLOSE</StyledTableCell>     
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {trendingData.map((row) => (
-                        <TableRow>
-                            <StyledTableCell>{row.symbol}</StyledTableCell>             
-                            <StyledTableCell>{row.name}</StyledTableCell>             
-                            <StyledTableCell>{row.change}</StyledTableCell>             
-                            <StyledTableCell>{row.change_p}</StyledTableCell>             
-                            <StyledTableCell>{row.volume}</StyledTableCell>             
-                            <StyledTableCell>{row.market_cap}</StyledTableCell>             
+                    {trendingData.map((row,idx) => (
+                        <TableRow key={`${idx}-${row.symbol}-row`}>
+                            <StyledTableCell key={`${idx}-symbol`}>{row.symbol}</StyledTableCell>             
+                            <StyledTableCell key={`${idx}-name`}>{row.name}</StyledTableCell>             
+                            <StyledTableCell key={`${idx}-change`}>{row.change}</StyledTableCell>             
+                            <StyledTableCell key={`${idx}-change_p`}>{row.change_p}</StyledTableCell>             
+                            <StyledTableCell key={`${idx}-high`}>{row.high}</StyledTableCell>             
+                            <StyledTableCell key={`${idx}-low`}>{row.low}</StyledTableCell>             
+                            <StyledTableCell key={`${idx}-open`}>{row.open}</StyledTableCell>             
+                            <StyledTableCell key={`${idx}-prevc`}>{row.prevc}</StyledTableCell>             
                         </TableRow>
                     ))}
                 </TableBody>
             </Table>
         </TableContainer>
+        </>
     );
 }
 
