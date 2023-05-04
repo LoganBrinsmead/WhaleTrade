@@ -1,35 +1,30 @@
-import React from 'react';
-import Header from './component/Header'
-import CandlestickChart from './charts/CandlestickChart';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './component/Header';
+import Body from './component/Body'
+import Login from './component/Login';
+import SignUp from './component/SignUp';
 
-function App () {
+
+function Home() {
   return (
     <div>
-        <Header />
-        <CandlestickChart
-           type="candlestick"
-           height={650}
-           stockSymbol="aapl"
-        />        
+      <Header />
+      <Body />
     </div>
-  )
+  );
 }
 
-
-// FOR TESTING: visualizing the test chart.
-function chart () {
+function App() {
   return (
-    <div className="font-face-rhd">
-      <h1>Welcome to Whale Trade</h1>
-      <div>
-        <CandlestickChart
-          type="candlestick" 
-          height={650}
-          stockSymbol="appl" 
-        />
-      </div>
-    </div>
-  )
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='signUp' element={<SignUp/>} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
