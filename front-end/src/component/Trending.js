@@ -7,27 +7,30 @@ import {
     TableRow,
     TableContainer,
     TableHead,
+    Typography,
 } from '@mui/material';
 
 import { tableCellClasses } from '@mui/material/TableCell';
-import { tableRowClasses } from '@mui/material/TableRow';
-import { getStockQuote } from '../services/api/whaletradApi';
+// import { tableRowClasses } from '@mui/material/TableRow';
+import { getStockQuote, getCompanyProfile } from '../services/api/whaletradApi';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: theme.palette.common.white,
         color: theme.palette.common.black,
         broderBottom: "none",
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: 'bold',
+        fontFamily: 'RedHatText',
     },
     [`&.${tableCellClasses.body}`]: {
         fontSize: 16, 
         borderBottom: "none",
+        fontFamily: 'RedHatText',
     }
 }));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({}));
+// const StyledTableRow = styled(TableRow)(({ theme }) => ({}));
 
 export default function Trending(props) {
     // later derive trending list from database
@@ -36,19 +39,26 @@ export default function Trending(props) {
 
     useEffect( () => {
         setTrendingData([]);
-        symbolList.forEach( (symbol) => {
+        symbolList.forEach( (symbol) => {          
             getStockQuote(symbol)
                 .then( res => {
-                    setTrendingData(curr => [...curr, {
-                        symbol: symbol,
-                        name: "Name",
-                        change: res.data.d,
-                        change_p: res.data.dp,
-                        high: res.data.h,
-                        low: res.data.l,
-                        open: res.data.o,
-                        prevc: res.data.pc
-                    }]);
+                    // get company profile
+                    getCompanyProfile(symbol)
+                        .then( (profile) => {
+                            setTrendingData(curr => [...curr, {
+                                symbol: symbol,
+                                name: profile.data.name,
+                                change: res.data.d,
+                                change_p: res.data.dp,
+                                high: res.data.h,
+                                low: res.data.l,
+                                open: res.data.o,
+                                prevc: res.data.pc
+                            }]);
+                        }).catch( (error) => {
+                            console.log(error);
+                        })
+
                 })
                 .catch( err => console.log(err));
         });
@@ -62,6 +72,8 @@ export default function Trending(props) {
 
     return (
         <>
+        <Typography variant="h3" gutterBottom>TRENDING</Typography>
+        <Typography variant="h4" gutterBottom>TODAY</Typography>
         <TableContainer>
             <Table sx={{ minWidth: 100, maxWidth: 400 }} aria-label="Trending Stocks">
                 <TableHead>
