@@ -1,5 +1,6 @@
 const base_url = "https://finnhub.io/api/v1";
 
+
 async function searchBySymbol(query, apiKey) {
     const url = `${base_url}/search?q=${query}&token=${apiKey}`
     const res = await fetch(url, {
