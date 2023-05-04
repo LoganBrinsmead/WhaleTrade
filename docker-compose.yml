@@ -1,0 +1,14 @@
+
+
+version: "3"
+
+services:
+  whaletrade:
+    container_name: whaletrade-server
+    image: whaletrade/whaletrade:latest
+    ports:
+      - "80:80"
+    environment:
+      - FUNNHUBAPIKEY=""
+      - APLPHAVANTAGEAPIKEY=""
+    restart: unless-stopped
