@@ -37,31 +37,34 @@ export default function Trending(props) {
     const { symbolList } = props; 
     const [ trendingData, setTrendingData ] = useState([]);
 
-    useEffect( () => {
-        setTrendingData([]);
-        symbolList.forEach( (symbol) => {          
-            getStockQuote(symbol)
-                .then( res => {
-                    // get company profile
-                    getCompanyProfile(symbol)
-                        .then( (profile) => {
-                            setTrendingData(curr => [...curr, {
-                                symbol: symbol,
-                                name: profile.data.name,
-                                change: res.data.d,
-                                change_p: res.data.dp,
-                                high: res.data.h,
-                                low: res.data.l,
-                                open: res.data.o,
-                                prevc: res.data.pc
-                            }]);
-                        }).catch( (error) => {
-                            console.log(error);
-                        })
+    const getData = async (symList) => {
+        let formatedData = await Promise.all(symList.map( async (symbol) => {
+            let quote = await getStockQuote(symbol);
+            let meta = await getCompanyProfile(symbol);
 
-                })
-                .catch( err => console.log(err));
-        });
+            if (quote.status !== 200 || meta.status !== 200) {
+                return;
+            }
+            return {
+                symbol: symbol,
+                name: meta.data.name,
+                change: quote.data.d,
+                change_p: quote.data.dp,
+                high: quote.data.h,
+                low: quote.data.l,
+                open: quote.data.o,
+                prevc: quote.data.pc
+
+            }
+        }));
+        console.log("formatted data: ",formatedData);
+
+        setTrendingData(formatedData);
+    }
+
+
+    useEffect( () => {
+        getData(symbolList);
     },[symbolList]);
    
     if (trendingData.length === 0) {
