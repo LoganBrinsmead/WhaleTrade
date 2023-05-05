@@ -1,29 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Box, Grid, IconButton, TextField } from "@mui/material";
 import { Search } from "@mui/icons-material"
 
-import { getStockLookup } from '../services/api/whaletradApi';
+import { redirect } from 'react-router-dom';
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState("");
-  const [searchData, setSearchData] = useState({});
 
-  console.log(searchData);
-
-  const handleQuery = () => {
-    getStockLookup(searchText)
-        .then( response => {
-          console.log(response.data);
-          setSearchData(response.data);
-        })
-        .catch( error => {
-          console.log(error);
-        })
-  }
+  
+  useEffect(() => {
+    
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    handleQuery();
+    // route to results page
+    redirect(`/search/:${searchText}`);
+    //<Navigate to={`/search/:${searchText}`} replace={true}/>
   };
 
   const handleChange = (event) => {
