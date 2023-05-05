@@ -22,7 +22,7 @@ const logoStyle = {
 
 
 export default function SignUp() {
-    const [name, setName] = useState('');
+    const [userName, setUserName] = useState('');
     const [email,setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passConfirm, setPassConfirm] = useState('');
@@ -69,7 +69,7 @@ export default function SignUp() {
         // event.stopPropagation();
         // event.preventDefault();
 
-        setName(event.target.value);
+        setUserName(event.target.value);
         setAuthFailed(false);
 
         if(event.key === "Enter") {
@@ -173,9 +173,9 @@ export default function SignUp() {
                 <TextField
                     error={authFailed}
                     id="outlined-error-helper-text"
-                    label="First Name"
+                    label="User Name"
                     placeholder=""
-                    value={name}
+                    value={userName}
                     onChange={handleNameInputChange}
                     style = {{width: 300}}
                 />
