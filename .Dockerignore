@@ -1,0 +1,10 @@
+resources
+.github
+.gitignore
+api
+front-end
+README.md
+.Dockerignore
+docker-compose.yml
+docker.md
+.env

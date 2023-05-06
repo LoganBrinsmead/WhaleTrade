@@ -1,14 +1,32 @@
-import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './component/Header';
+/*
+import Body from './component/Body'
+import Login from './component/Login';
+import SignUp from './component/SignUp';
+*/
 
-
-
-function hello () {
+function Home() {
   return (
     <div>
-      <h1>Welcome to Whale Trade</h1>
-      
+      <Header />
+      {/*<Body />*/}
     </div>
-  )
+  );
 }
 
-export default hello
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home />} />
+
+        <Route path='/login' element={<Login />} />
+        <Route path='/signUp' element={<SignUp/>} />
+
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;

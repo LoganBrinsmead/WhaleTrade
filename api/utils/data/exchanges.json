@@ -1,0 +1,712 @@
+[
+  {
+    "code": "AS",
+    "name": "NYSE EURONEXT - EURONEXT AMSTERDAM",
+    "mic": "XAMS",
+    "timezone": "Europe/Amsterdam",
+    "hour": "09:00-17:40",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/euronext"
+  },
+  {
+    "code": "AT",
+    "name": "ATHENS EXCHANGE S.A. CASH MARKET",
+    "mic": "ASEX",
+    "timezone": "Europe/Athens",
+    "hour": "10:15-17:20",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/ase-athens"
+  },
+  {
+    "code": "AX",
+    "name": "ASX - ALL MARKETS",
+    "mic": "XASX",
+    "timezone": "Australia/Sydney",
+    "hour": "10:00-16:00",
+    "close_date": "",
+    "country": "AU",
+    "source": "https://www.tradinghours.com/exchanges/asx"
+  },
+  {
+    "code": "BA",
+    "name": "BOLSA DE COMERCIO DE BUENOS AIRES",
+    "mic": "XBUE",
+    "timezone": "America/Argentina/Buenos_Aires",
+    "hour": "10:30-17:15",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/bcba"
+  },
+  {
+    "code": "BC",
+    "name": "BOLSA DE VALORES DE COLOMBIA",
+    "mic": "XBOG",
+    "timezone": "America/Cuiaba",
+    "hour": "09:15-16:00",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/bvc"
+  },
+  {
+    "code": "BD",
+    "name": "BUDAPEST STOCK EXCHANGE",
+    "mic": "XBUD",
+    "timezone": "Europe/Budapest",
+    "hour": "08:15-17:20",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/bse-budapest"
+  },
+  {
+    "code": "BE",
+    "name": "BOERSE BERLIN",
+    "mic": "XBER",
+    "timezone": "Europe/Berlin",
+    "hour": "08:00-20:00",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/xber"
+  },
+  {
+    "code": "BK",
+    "name": "STOCK EXCHANGE OF THAILAND",
+    "mic": "XBKK",
+    "timezone": "Asia/Bangkok",
+    "hour": "09:30-17:00",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/set"
+  },
+  {
+    "code": "BO",
+    "name": "BSE LTD",
+    "mic": "XBOM",
+    "timezone": "Asia/Kolkata",
+    "hour": "09:00-16:00",
+    "close_date": "",
+    "country": "IN",
+    "source": "https://www.tradinghours.com/exchanges/bse-bombay"
+  },
+  {
+    "code": "BR",
+    "name": "NYSE EURONEXT - EURONEXT BRUSSELS",
+    "mic": "XBRU",
+    "timezone": "Europe/Brussels",
+    "hour": "09:00-17:30",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/euronext-brussels"
+  },
+  {
+    "code": "CA",
+    "name": "Egyptian Stock Exchange",
+    "mic": "XCAI",
+    "timezone": "Africa/Cairo",
+    "hour": "10:00-14:30",
+    "close_date": "6,7",
+    "country": "",
+    "source": "https://www.tradinghours.com/markets/egx"
+  },
+  {
+    "code": "CN",
+    "name": "CANADIAN NATIONAL STOCK EXCHANGE",
+    "mic": "XCNQ",
+    "timezone": "America/New_York",
+    "hour": "08:00-17:00",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/cnsx"
+  },
+  {
+    "code": "CO",
+    "name": "OMX NORDIC EXCHANGE COPENHAGEN A/S",
+    "mic": "XCSE",
+    "timezone": "Europe/Copenhagen",
+    "hour": "09:00-17:00",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/omxc-copenhagen"
+  },
+  {
+    "code": "CR",
+    "name": "CARACAS STOCK EXCHANGE",
+    "mic": "BVCA",
+    "timezone": "America/Caracas",
+    "hour": "08:30-13:30",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/bvcc"
+  },
+  {
+    "code": "DB",
+    "name": "DUBAI FINANCIAL MARKET",
+    "mic": "XDFM",
+    "timezone": "Asia/Dubai",
+    "hour": "09:30-14:00",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/dfm"
+  },
+  {
+    "code": "DE",
+    "name": "XETRA",
+    "mic": "XETR",
+    "timezone": "Europe/Berlin",
+    "hour": "09:00-17:30",
+    "close_date": "",
+    "country": "DE",
+    "source": "https://www.tradinghours.com/exchanges/xetr"
+  },
+  {
+    "code": "DU",
+    "name": "BOERSE DUESSELDORF",
+    "mic": "XDUS",
+    "timezone": "Europe/Berlin",
+    "hour": "08:00:20:00",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/xdus"
+  },
+  {
+    "code": "F",
+    "name": "DEUTSCHE BOERSE AG",
+    "mic": "XFRA",
+    "timezone": "Europe/Berlin",
+    "hour": "08:00-20:00",
+    "close_date": "",
+    "country": "DE",
+    "source": "https://www.tradinghours.com/exchanges/fsx"
+  },
+  {
+    "code": "HE",
+    "name": "NASDAQ OMX HELSINKI LTD",
+    "mic": "XHEL",
+    "timezone": "Europe/Helsinki",
+    "hour": "10:00-18:30",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/omxh-helsinki"
+  },
+  {
+    "code": "HK",
+    "name": "HONG KONG EXCHANGES AND CLEARING LTD",
+    "mic": "XHKG",
+    "timezone": "Asia/Hong_Kong",
+    "hour": "09:00-16:10",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/hkex"
+  },
+  {
+    "code": "HM",
+    "name": "HANSEATISCHE WERTPAPIERBOERSE HAMBURG",
+    "mic": "XHAM",
+    "timezone": "Europe/Berlin",
+    "hour": "08:00-20:00",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/xham"
+  },
+  {
+    "code": "IC",
+    "name": "NASDAQ OMX ICELAND",
+    "mic": "XICE",
+    "timezone": "Atlantic/Reykjavik",
+    "hour": "09:30-15:30",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/xice"
+  },
+  {
+    "code": "IR",
+    "name": "IRISH STOCK EXCHANGE - ALL MARKET",
+    "mic": "XDUB",
+    "timezone": "Europe/Dublin",
+    "hour": "09:00-17:30",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/ise"
+  },
+  {
+    "code": "IS",
+    "name": "BORSA ISTANBUL",
+    "mic": "XIST",
+    "timezone": "Europe/Istanbul",
+    "hour": "09:40-18:10",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/bist"
+  },
+  {
+    "code": "JK",
+    "name": "INDONESIA STOCK EXCHANGE",
+    "mic": "XIDX",
+    "timezone": "Asia/Jakarta",
+    "hour": "08:45-15:15",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/idx"
+  },
+  {
+    "code": "JO",
+    "name": "JOHANNESBURG STOCK EXCHANGE",
+    "mic": "XJSE",
+    "timezone": "Africa/Johannesburg",
+    "hour": "09:00-17:00",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/jse"
+  },
+  {
+    "code": "KL",
+    "name": "BURSA MALAYSIA",
+    "mic": "XKLS",
+    "timezone": "Asia/Kuala_Lumpur",
+    "hour": "08:30-17:00",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/myx"
+  },
+  {
+    "code": "KQ",
+    "name": "KOREA EXCHANGE (KOSDAQ)",
+    "mic": "XKOS",
+    "timezone": "Asia/Seoul",
+    "hour": "09:00-15:30",
+    "close_date": "",
+    "country": "KP",
+    "source": "https://www.tradinghours.com/exchanges/kosdaq"
+  },
+  {
+    "code": "KS",
+    "name": "KOREA EXCHANGE (STOCK MARKET)",
+    "mic": "XKRX",
+    "timezone": "Asia/Seoul",
+    "hour": "08:00-18:00",
+    "close_date": "",
+    "country": "KP",
+    "source": "https://www.tradinghours.com/exchanges/krx"
+  },
+  {
+    "code": "L",
+    "name": "LONDON STOCK EXCHANGE",
+    "mic": "XLON",
+    "timezone": "Europe/London",
+    "hour": "08:00-16:30",
+    "close_date": "",
+    "country": "GB",
+    "source": "https://www.tradinghours.com/exchanges/lse"
+  },
+  {
+    "code": "LN",
+    "name": "Euronext London",
+    "mic": "XLDN",
+    "timezone": "",
+    "hour": "",
+    "close_date": "",
+    "country": "",
+    "source": ""
+  },
+  {
+    "code": "LS",
+    "name": "NYSE EURONEXT - EURONEXT LISBON",
+    "mic": "XLIS",
+    "timezone": "Europe/Lisbon",
+    "hour": "09:00-17:30",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/euronext-lisbon"
+  },
+  {
+    "code": "MC",
+    "name": "BOLSA DE MADRID",
+    "mic": "XMAD",
+    "timezone": "Europe/Madrid",
+    "hour": "09:00-17:30",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/bme"
+  },
+  {
+    "code": "ME",
+    "name": "MOSCOW EXCHANGE",
+    "mic": "MISX",
+    "timezone": "Europe/Moscow",
+    "hour": "09:30-19:00",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/moex"
+  },
+  {
+    "code": "MI",
+    "name": "Italian Stock Exchange",
+    "mic": "XMIL",
+    "timezone": "Europe/Rome",
+    "hour": "08:00-17:42",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/mta"
+  },
+  {
+    "code": "MU",
+    "name": "BOERSE MUENCHEN",
+    "mic": "XMUN",
+    "timezone": "Europe/Berlin",
+    "hour": "08:00-20:00",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/xmun"
+  },
+  {
+    "code": "MX",
+    "name": "BOLSA MEXICANA DE VALORES (MEXICAN STOCK EXCHANGE)",
+    "mic": "XMEX",
+    "timezone": "America/Mexico_City",
+    "hour": "08:00-15:10",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/bmv"
+  },
+  {
+    "code": "NE",
+    "name": "AEQUITAS NEO EXCHANGE",
+    "mic": "NEOE",
+    "timezone": "America/Toronto",
+    "hour": "09:30-16:00",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/neo"
+  },
+  {
+    "code": "NL",
+    "name": "Nigerian Stock Exchange",
+    "mic": "XNSA",
+    "timezone": "Africa/Lagos",
+    "hour": "09:30-14:30",
+    "close_date": "",
+    "country": "",
+    "source": ""
+  },
+  {
+    "code": "NS",
+    "name": "NATIONAL STOCK EXCHANGE OF INDIA",
+    "mic": "XNSE",
+    "timezone": "Asia/Kolkata",
+    "hour": "09:00-16:00",
+    "close_date": "",
+    "country": "IN",
+    "source": "https://www.tradinghours.com/exchanges/nse-india"
+  },
+  {
+    "code": "NZ",
+    "name": "NEW ZEALAND EXCHANGE LTD",
+    "mic": "XNZE",
+    "timezone": "Pacific/Auckland",
+    "hour": "10:00-16:45",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/nzx"
+  },
+  {
+    "code": "OL",
+    "name": "OSLO BORS ASA",
+    "mic": "XOSL",
+    "timezone": "Europe/Oslo",
+    "hour": "08:15-17:30",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/ose"
+  },
+  {
+    "code": "PA",
+    "name": "NYSE EURONEXT - MARCHE LIBRE PARIS",
+    "mic": "XPAR",
+    "timezone": "Europe/Paris",
+    "hour": "09:00-17:30",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/euronext-paris"
+  },
+  {
+    "code": "PM",
+    "name": "Philippine Stock Exchange",
+    "mic": "XPHS",
+    "timezone": "Asia/Manila",
+    "hour": "09:30-13:00",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/markets/pse"
+  },
+  {
+    "code": "PR",
+    "name": "PRAGUE STOCK EXCHANGE",
+    "mic": "XPRA",
+    "timezone": "Europe/Prague",
+    "hour": "08:00-17:00",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/xpra"
+  },
+  {
+    "code": "QA",
+    "name": "QATAR EXCHANGE",
+    "mic": "DSMD",
+    "timezone": "Asia/Qatar",
+    "hour": "09:00-13:15",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/qe"
+  },
+  {
+    "code": "RG",
+    "name": "NASDAQ OMX RIGA",
+    "mic": "XRIS",
+    "timezone": "Europe/Riga",
+    "hour": "09:00-16:30",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/omxr-riga"
+  },
+  {
+    "code": "SA",
+    "name": "Brazil Bolsa - Sao Paolo",
+    "mic": "BVMF",
+    "timezone": "America/Sao_Paulo",
+    "hour": "09:45-18:45",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/bovespa"
+  },
+  {
+    "code": "SG",
+    "name": "BOERSE STUTTGART",
+    "mic": "XSTU",
+    "timezone": "Asia/Amman",
+    "hour": "08:00-20:00",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/xstu"
+  },
+  {
+    "code": "SI",
+    "name": "SINGAPORE EXCHANGE",
+    "mic": "XSES",
+    "timezone": "Asia/Singapore",
+    "hour": "08:30-17:16",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/sgx"
+  },
+  {
+    "code": "SN",
+    "name": "SANTIAGO STOCK EXCHANGE",
+    "mic": "XSGO",
+    "timezone": "America/Santiago",
+    "hour": "09:30-16:00",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/bvs"
+  },
+  {
+    "code": "SR",
+    "name": "SAUDI STOCK EXCHANGE",
+    "mic": "XSAU",
+    "timezone": "Asia/Riyadh",
+    "hour": "10:00-15:10",
+    "close_date": "6,7",
+    "country": "SA",
+    "source": "https://www.tradinghours.com/exchanges/tadawul"
+  },
+  {
+    "code": "SS",
+    "name": "SHANGHAI STOCK EXCHANGE",
+    "mic": "XSHG",
+    "timezone": "Asia/Shanghai",
+    "hour": "09:15-15:30",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/sse"
+  },
+  {
+    "code": "ST",
+    "name": "NASDAQ OMX NORDIC STOCKHOLM",
+    "mic": "XSTO",
+    "timezone": "Europe/Stockholm",
+    "hour": "08:00-18:00",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/xngm"
+  },
+  {
+    "code": "SW",
+    "name": "SWISS EXCHANGE",
+    "mic": "XSWX",
+    "timezone": "Europe/Zurich",
+    "hour": "09:30-17:00",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/six"
+  },
+  {
+    "code": "SZ",
+    "name": "SHENZHEN STOCK EXCHANGE",
+    "mic": "XSHE",
+    "timezone": "Asia/Shanghai",
+    "hour": "09:15-15:00",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/szse"
+  },
+  {
+    "code": "T",
+    "name": "TOKYO STOCK EXCHANGE-TOKYO PRO MARKET",
+    "mic": "XJPX",
+    "timezone": "Asia/Tokyo",
+    "hour": "09:00-15:00",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/jpx"
+  },
+  {
+    "code": "TA",
+    "name": "TEL AVIV STOCK EXCHANGE",
+    "mic": "XTAE",
+    "timezone": "Asia/Jerusalem",
+    "hour": "09:45-17:14",
+    "close_date": "6,7",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/tase"
+  },
+  {
+    "code": "TL",
+    "name": "NASDAQ OMX TALLINN",
+    "mic": "XTAL",
+    "timezone": "Europe/Tallinn",
+    "hour": "09:00-16:30",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/omxt-tallinn"
+  },
+  {
+    "code": "TO",
+    "name": "TORONTO STOCK EXCHANGE",
+    "mic": "XTSE",
+    "timezone": "America/Toronto",
+    "hour": "09:30-16:00",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/tsx"
+  },
+  {
+    "code": "TW",
+    "name": "TAIWAN STOCK EXCHANGE",
+    "mic": "XTAI",
+    "timezone": "Asia/Taipei",
+    "hour": "09:00-17:00",
+    "close_date": "",
+    "country": "TW",
+    "source": "https://www.tradinghours.com/exchanges/twse"
+  },
+  {
+    "code": "US",
+    "name": "US exchanges (NYSE, Nasdaq)",
+    "mic": "XNYS,XASE,BATS,ARCX,XNMS,XNCM,XNGS,IEXG",
+    "timezone": "America/New_York",
+    "hour": "09:30-16:00",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/nyse"
+  },
+  {
+    "code": "V",
+    "name": "TSX VENTURE EXCHANGE - NEX",
+    "mic": "XTSX",
+    "timezone": "America/Toronto",
+    "hour": "09:30-16:15",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/xtsx"
+  },
+  {
+    "code": "VI",
+    "name": "Vienna Stock Exchange",
+    "mic": "XWBO",
+    "timezone": "Europe/Vienna",
+    "hour": "09:04-17:30",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/vse"
+  },
+  {
+    "code": "VN",
+    "name": "Vietnam exchanges including HOSE, HNX and UPCOM",
+    "mic": "HSTC, XSTC",
+    "timezone": "Asia/Bangkok",
+    "hour": "09:00-15:00",
+    "close_date": "",
+    "country": "VN",
+    "source": "https://www.tradinghours.com/exchanges/hose"
+  },
+  {
+    "code": "VS",
+    "name": "NASDAQ OMX VILNIUS",
+    "mic": "XLIT",
+    "timezone": "Europe/Vilnius",
+    "hour": "09:00-16:30",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/omxv-vilnius"
+  },
+  {
+    "code": "WA",
+    "name": "WARSAW STOCK EXCHANGE/EQUITIES/MAIN MARKET",
+    "mic": "XWAR",
+    "timezone": "Europe/Warsaw",
+    "hour": "08:30-17:05",
+    "close_date": "",
+    "country": "",
+    "source": "https://www.tradinghours.com/exchanges/gpw"
+  },
+  {
+    "code": "HA",
+    "name": "Hanover Stock Exchange",
+    "mic": "XHAN",
+    "timezone": "Europe/Berlin",
+    "hour": "",
+    "close_date": "",
+    "country": "",
+    "source": ""
+  },
+  {
+    "code": "SX",
+    "name": "DEUTSCHE BOERSE Stoxx",
+    "mic": "",
+    "timezone": "Europe/Berlin",
+    "hour": "",
+    "close_date": "",
+    "country": "",
+    "source": ""
+  },
+  {
+    "code": "TG",
+    "name": "DEUTSCHE BOERSE TradeGate",
+    "mic": "",
+    "timezone": "Europe/Berlin",
+    "hour": "",
+    "close_date": "",
+    "country": "",
+    "source": ""
+  },
+  {
+    "code": "SC",
+    "name": "BOERSE_FRANKFURT_ZERTIFIKATE",
+    "mic": "",
+    "timezone": "Europe/Berlin",
+    "hour": "",
+    "close_date": "",
+    "country": "",
+    "source": ""
+  }
+]

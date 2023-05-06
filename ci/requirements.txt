@@ -1,0 +1,5 @@
+anyio==3.6.2
+asyncer==0.0.2
+dagger-io==0.4.1
+python-decouple==3.8
+argparse
