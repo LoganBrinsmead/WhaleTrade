@@ -3,7 +3,10 @@ import Box from '@mui/material/Box'
 import Logo from './Logo'
 import SearchBar from "./SearchBar";
 import Profile from "./Profile";
-// import HamburgerMenu from "./HambergerMenu"
+import HamburgerMenu from "./HambergerMenu"
+import Login from "./Login";
+import LoginButton from "./LoginButton";
+
 
 
 
@@ -11,7 +14,7 @@ import Profile from "./Profile";
 const headerStyle = {
   backgroundColor: "white",
   width: '100%',
-  height: '150px',
+  height: '120px',
   display: 'flex',
   position: 'relative'
 };
@@ -39,12 +42,27 @@ const profileStyle = {
 }
 
 
+const loginStyle = {
+    position: "absolute",
+    right: "100px",
+    top: '1'
+ 
+}
 
-// const hambutgerStyle = {
-//   position: "absolute",
-//   right: "5px",
-//   top : '10px',
-// }
+
+
+const hambutgerStyle = {
+  position: "absolute", 
+  right: "5px",
+  top : '6px',
+}
+
+
+const ButtonStyle = {
+    position: "absolute", 
+    right: "75px",
+    top : '10px',
+}
 
 
 
@@ -60,13 +78,19 @@ function Header()  {
       </Box>
 
       <Box sx = {profileStyle}>
-        <Profile />
+       
+      </Box>
+
+      <Box sx = {ButtonStyle}>
+        <LoginButton />
       </Box>
       
-      {/*<Box sx = {hambutgerStyle}>*/}
-      {/*  <HamburgerMenu />*/}
-      {/*</Box>*/}
-     
+      <Box sx = {hambutgerStyle}>
+        <HamburgerMenu />
+      </Box>
+
+  
+
     
     </Box>
   
