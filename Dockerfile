@@ -18,6 +18,9 @@ ENV PORT=80
 ENV FINNHUBAPIKEY=none
 ENV ALPHAVANTAGEAPIKEY=none
 
+EXPOSE ${PORT}
+EXPOSE 443
+
 # Copy bundle and static build files
 WORKDIR /server
 COPY mongo_config.yml /server/mongo_config.yml
