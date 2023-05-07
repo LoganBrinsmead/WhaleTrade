@@ -10,8 +10,9 @@ import {
     Typography,
 } from '@mui/material';
 
+import { Link } from 'react-router-dom';
+
 import { tableCellClasses } from '@mui/material/TableCell';
-// import { tableRowClasses } from '@mui/material/TableRow';
 import { getStockQuote, getCompanyProfile } from '../services/api/whaletradApi';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -30,10 +31,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     }
 }));
 
-// const StyledTableRow = styled(TableRow)(({ theme }) => ({}));
-
 export default function Trending(props) {
-    // later derive trending list from database
     const { symbolList } = props; 
     const [ trendingData, setTrendingData ] = useState([]);
 
@@ -94,7 +92,7 @@ export default function Trending(props) {
                 <TableBody>
                     {trendingData.map((row,idx) => (
                         <TableRow key={`${idx}-${row.symbol}-row`}>
-                            <StyledTableCell key={`${idx}-symbol`}>{row.symbol}</StyledTableCell>             
+                            <StyledTableCell key={`${idx}-symbol`}><Link to={`/chart/${row.symbol}`}>{row.symbol}</Link></StyledTableCell>             
                             <StyledTableCell key={`${idx}-name`}>{row.name}</StyledTableCell>             
                             <StyledTableCell key={`${idx}-change`} sx={{ color: (row.change < 0 ? 'red' : 'green') }}>
                                 {row.change}
