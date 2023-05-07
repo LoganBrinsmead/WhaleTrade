@@ -18,7 +18,7 @@ export default function Summary (props) {
       }}
       >
         {ticker} <br/>
-        {currentPrice.toFixed(2)} <br/>
+        {currentPrice} <br/>
         <Typography color = {textColor}>
           {priceChange}
         </Typography>

@@ -4,3 +4,4 @@
 dist
 ci/utils/__pycache__
 .idea
+node_modules

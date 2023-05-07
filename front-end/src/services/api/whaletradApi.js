@@ -7,7 +7,7 @@ import axios from 'axios';
  * @constructor
  */
 export const axiosClient = axios.create({
-    baseURL: `${getApiURL().href}api/v1/`,
+    baseURL: `${getApiURL().origin}/api/v1/`,
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -79,8 +79,8 @@ export function getCompanyPeers(symbol) {
  * get current trends from finnhub api
  * @returns {Promise<axios.AxiosResponse<any>>}
  */
-export function getTrends() {
-    return axiosClient.get('/market/stocks/recommend');
+export function getRecommend(symbol) {
+    return axiosClient.get(`/market/stocks/recommend?symbol=${symbol}`);
 }
 
 /**
@@ -112,25 +112,12 @@ export function getMonthlyData(symbol) {
     return axiosClient.get(`/market/stocks/monthly?symbol=${symbol}`);
 }
 
-// /**
-//  *
-//  * @param type - specify the time frame as 'daily', 'weekly', 'monthly'
-//  * @param symbol - stock symbol
-//  * @param interval - 1min, 5min, 15min, 30min, 60min (only used w/ daily)
-//  * @param outputsize - compact, full (only used w/ daily)
-//  * @returns {Promise<axios.AxiosResponse<any>>}
-//  */
-// export function getTimeSeriesData(type, symbol, interval, outputsize) {
-//     if (type === "daily") {
-//         return axiosClient.get(`/market/stocks/intraday?symbol=${symbol}&interval=${interval}&outputsize=${outputsize}`);
-//     }
-//     else if (type === "weekly") {
-//         return axiosClient.get(`/market/stocks/weekly?symbol=${symbol}`);
-//     }
-//     else if (type === "monthly") {
-//         return axiosClient.get(`/market/stocks/monthly?symbol=${symbol}`);
-//     }
-//
-//     throw 'Error Incorrect type, please use "daily, weekly, or monthly"'
-// }
+/**
+* Get Company profile
+* @param symbol
+* @returns {Promise<axios.AxiosResponse<any>>}
+*/
+export function getCompanyProfile(symbol) {
+    return axiosClient.get(`/market/stocks/profile?symbol=${symbol}`);
+}
 

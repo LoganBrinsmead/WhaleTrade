@@ -32,6 +32,17 @@ stock_router.get('/exchange=:exchange&mic=:mic', (req, res) => {
     });
 });
 
+stock_router.get('/profile', (req, res) => {
+    const symbol = req.query.symbol;
+    finnhub_api.getProfile(symbol, finnhubapikey)
+    .then( (data) => {
+        res.status(200).json(data);
+    }).catch( (error) => {
+        console.log(error);
+        res.status(400).send(error);
+    });
+});
+
 stock_router.get('/search', (req, res) => {
     const query = req.query.symbol;
     finnhub_api.searchBySymbol(query,finnhubapikey)

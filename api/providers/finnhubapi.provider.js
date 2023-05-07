@@ -102,6 +102,17 @@ async function getCryptoSymbols(exchange = 'binance', apiKey) {
     throw `[Error]: ${res.status} from finnhub api: ${url}`;
 }
 
+async function getProfile(symbol, apiKey) {
+    const url = `${base_url}/stock/profile2?symbol=${symbol}&token=${apiKey}`;
+    let res = await fetch(url, {
+        method: 'GET',
+    });
+    if (res.ok) {
+        return res.json();
+    }
+    throw `[Error]: ${res.status} from finnhub api: ${url}`;
+}
+
 module.exports = {
     searchBySymbol,
     getStocks,
@@ -110,6 +121,7 @@ module.exports = {
     getQuote,
     getStockCandles,
     getTrend,
+    getProfile,
     getCryptoExchanges,
     getCryptoSymbols,
 }
