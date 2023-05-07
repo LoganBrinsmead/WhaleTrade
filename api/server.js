@@ -18,13 +18,14 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
 // import api router
 const routes = require('./routes/default');
 app.use("/api/v1", routes);
+
+// ui routes
+app.get("/*", (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // start 
 if (process.env.SERVER === 'production') {

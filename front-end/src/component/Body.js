@@ -1,8 +1,8 @@
 import React from "react";
 import Box from '@mui/material/Box'
-import CandlestickChart from '../charts/CandlestickChart';
 //import Sidebar from "./SideBar";
 import SignUp from "./SignUp";
+import Trending from './Trending';
 
 const bodyStyle = {
   backgroundColor: "white",
@@ -41,14 +41,9 @@ export default function Body(){
       
        
     <Box sx={chartStyle}>
-        <CandlestickChart
-            type="candlestick" 
-            height="600"
-            width="100%"
-            stockSymbol="AAPL" 
-            
-        />
+      <Trending symbolList={['AAPL', 'GOOG', 'MSFT', 'AMZN']} />
     </Box>  
+      
       
     
     </Box>

@@ -28,6 +28,7 @@ COPY dist/ /server/
 
 # start database
 RUN mkdir -p /data/db
+VOLUME /data/db
 RUN nohup mongod -f /server/mongo_config.yml &
 
 # use pm to run server - needs to be configured for logging
