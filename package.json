@@ -3,5 +3,8 @@
     "connect-redis": "^7.0.0",
     "express-session": "^1.17.3",
     "redis": "^4.6.5"
+  },
+  "devDependencies": {
+    "redis-mock": "^0.56.3"
   }
 }

@@ -33,10 +33,7 @@ jobs:
         working-directory: ./api
         env:
           REDISSTORESECRET: ${{ secrets.REDISSTORESECRET }}
-        #   DEVELOPMENT: true
-        #   FINNHUBAPIKEY: ${{ secrets.FINNHUBAPIKEY }}
-        #   ALPHAVANTAGEAPIKEY: ${{ secrets.ALPHAVANTAGEAPIKEY }}
-        #   MONGOURI: "mongodb://localhost:27017"
+          MONGOURI: "mongodb://localhost:27017"
         
 
   ui_tests:
