@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
@@ -6,6 +7,10 @@ const session = require('express-session');
 const RedisIO = require("ioredis");
 const RedisStore = require("connect-redis").default;
 const redis = require('redis');
+const https = require('https');
+const http = require('http');
+const cors = require('cors');
+
 
 const app = express();
 
@@ -40,7 +45,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const MONGOURI = process.env.MONGOURI;
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 9000;
 
 app.use(express.json());
 
@@ -48,6 +53,8 @@ mongoose.connect(MONGOURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
+app.use(cors());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // log incoming requests
 app.use((req, res, next) => {
@@ -55,12 +62,32 @@ app.use((req, res, next) => {
     next();
 });
 
-// import routes
+// import api router
 const routes = require('./routes/default');
 app.use("/api/v1", routes);
 
-
-// start api
-app.listen(PORT, () => {
-    console.log(`Starting server on port: ${PORT}`);
+// ui routes
+app.get("/*", (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+
+// start 
+if (process.env.SERVER === 'production') {
+    console.log('Starting Production Server')
+    http.createServer(app)
+        .listen(PORT, () => {
+            console.log(`starting http server: ${PORT}`)
+        });
+    https.createServer(app)
+        .listen(443, () => {
+            console.log(`starting https server: 443`)
+        });
+}
+else {
+    console.log('Starting Development Server')
+    app.listen(PORT, () => {
+        console.log(`Starting server on port: ${PORT}`);
+    });
+}
+
+module.exports = app;
