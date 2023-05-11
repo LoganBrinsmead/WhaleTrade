@@ -20,18 +20,24 @@ jobs:
         uses: supercharge/mongodb-github-action@1.8.0
         with:
           mongodb-version: "6.0"
+          
+      - name: Setup Redis
+        uses: shogo82148/actions-setup-redis@v1
+        with:
+          auto-start: true
 
       - name: Run API tests
         run: |
           npm install
           npm test
         working-directory: ./api
-        # env:
+        env:
+          REDISSTORESECRET: ${{ secrets.REDISSTORESECRET }}
         #   DEVELOPMENT: true
         #   FINNHUBAPIKEY: ${{ secrets.FINNHUBAPIKEY }}
         #   ALPHAVANTAGEAPIKEY: ${{ secrets.ALPHAVANTAGEAPIKEY }}
         #   MONGOURI: "mongodb://localhost:27017"
-        #   REDISSTORESECRET: ${{ secrets.REDISSTORESECRET }}
+        
 
   ui_tests:
     runs-on: ubuntu-latest
