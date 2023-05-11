@@ -7,7 +7,7 @@ import axios from 'axios';
  * @constructor
  */
 export const axiosClient = axios.create({
-    baseURL: `${getApiURL().href}api/v1/`,
+    baseURL: `${getApiURL().origin}/api/v1/`,
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
