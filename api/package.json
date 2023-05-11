@@ -12,8 +12,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chai": "^4.3.7",
-    "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "bcryptjs": "^2.4.3",
     "connect-redis": "^7.0.0",
@@ -33,6 +31,9 @@
     "dotenv": "^16.0.3",
     "nodemon": "^2.0.20",
     "webpack-cli": "^5.0.1",
-    "copy-webpack-plugin": "^11.0.0"
+    "copy-webpack-plugin": "^11.0.0",
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0", 
+    "redis-mock": "^0.56.3"
   }
 }
