@@ -22,8 +22,8 @@ const logoStyle = {
 
 
 export default function SignUp() {
-    const [name, setName] = useState('');
-    const [email,setEmail] = useState('');
+    const [userName, setUserName] = useState('');
+    //const [email,setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passConfirm, setPassConfirm] = useState('');
     const [signUp, setSignUp] = useState(false)
@@ -34,10 +34,8 @@ export default function SignUp() {
     
 
 
-
-
     // useEffect(()=>{
-    //     if (!verifyUser || email.length === 0 || name.length === 0, password.length === 0) return
+    //     if (!verifyUser || userName.length === 0, password.length === 0) return
     //     const api = new API();
     //     async function signUp(){
     //         api.addUser(email,name,password)
@@ -49,15 +47,17 @@ export default function SignUp() {
     //     }
     //     signUp()
     
-    // },[signUp])
+    // },[signUp,verifyUser ])
+
 
 
     function handleClick(password,passConfirm) {
        if(password !== passConfirm){
          setNotice('Password not match, please enter again !')
-       } else (
+       } else {
         setSignUp(true)
-       )
+        setVerifyUser(true)
+       }
     };
 
 
@@ -66,10 +66,7 @@ export default function SignUp() {
     const handleNameInputChange = event => {
         console.log("handleInputChange called.");
 
-        // event.stopPropagation();
-        // event.preventDefault();
-
-        setName(event.target.value);
+        setUserName(event.target.value);
         setAuthFailed(false);
 
         if(event.key === "Enter") {
@@ -82,10 +79,7 @@ export default function SignUp() {
     const handleEmailInputChange = event => {
         console.log("handleInputChange called.");
 
-        // event.stopPropagation();
-        // event.preventDefault();
-
-        setEmail(event.target.value);
+       // setEmail(event.target.value);
         setAuthFailed(false);
 
         if(event.key === "Enter") {
@@ -124,8 +118,6 @@ export default function SignUp() {
 
 
 
-
-
     return (
         <Fragment>
 
@@ -137,9 +129,6 @@ export default function SignUp() {
                 <Typography variant="h3" sx={{ fontFamily: 'Monospace' }}>
                     Whale Trade
                 </Typography>
-                <Box sx = {logoStyle}>
-                    <Logo />
-                </Box>
                 <Divider/>
             </Box>
 
@@ -152,7 +141,7 @@ export default function SignUp() {
             </Box>
 
 
-            <Box display="flex" justifyContent="center" alignItems="center" width="100%" mt={2}>
+            {/* <Box display="flex" justifyContent="center" alignItems="center" width="100%" mt={2}>
 
                 <TextField
                     error={authFailed}
@@ -164,7 +153,7 @@ export default function SignUp() {
                     style = {{width: 300}}
                 />
             <Divider/>
-            </Box>
+            </Box> */}
 
 
 
@@ -173,9 +162,9 @@ export default function SignUp() {
                 <TextField
                     error={authFailed}
                     id="outlined-error-helper-text"
-                    label="First Name"
+                    label="User Name"
                     placeholder=""
-                    value={name}
+                    value={userName}
                     onChange={handleNameInputChange}
                     style = {{width: 300}}
                 />

@@ -5,11 +5,15 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import {Link, Typography} from "@mui/material";
 import {useNavigate} from 'react-router-dom';
-
+import Logo from './Logo'
 
 //import API from './API_Interface/API_Interface'
 
-
+const logoStyle = {
+    position: "absolute",
+    margin : "10px"
+  }
+  
 
 
 function Login({setUser}) {
@@ -82,6 +86,9 @@ function Login({setUser}) {
 
     return (
         <Fragment>
+            <Box>
+                <Logo/>
+            </Box>
             <Box display="flex" justifyContent="center" alignItems="center" width="100%" mt={10}>
                <Typography variant="h3" sx={{ fontFamily: 'Monospace' }}>
                    Whale Trade

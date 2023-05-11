@@ -1,48 +1,25 @@
-import React from "react";
-import { styled } from '@mui/material/styles';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import HomeIcon from '@mui/icons-material/Home';
+import React from 'react';
+import { Drawer, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import InboxIcon from '@mui/icons-material/Inbox';
 import MailIcon from '@mui/icons-material/Mail';
 
-const DrawerWidth = 300;
-
-const StyledDrawer = styled(Drawer)(({ theme }) => ({
-  '& .MuiDrawer-paper': {
-    width: DrawerWidth,
-    boxSizing: 'border-box',
-  },
-}));
-
-const Sidebar = () => {
+function Sidebar() {
   return (
-    <StyledDrawer variant="permanent">
+    <Drawer
+      variant="permanent"
+      anchor="left"
+      sx={{ marginTop: '120px' }}  // This is the style you add to make the component 120px from top
+    >
       <List>
-        <ListItem button>
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText primary="Home" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Inbox" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <MailIcon />
-          </ListItemIcon>
-          <ListItemText primary="Mail" />
-        </ListItem>
+        {['Inbox', 'Outbox'].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
       </List>
-    </StyledDrawer>
+    </Drawer>
   );
-};
+}
 
 export default Sidebar;
