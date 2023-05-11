@@ -31,6 +31,7 @@ jobs:
         #   FINNHUBAPIKEY: ${{ secrets.FINNHUBAPIKEY }}
         #   ALPHAVANTAGEAPIKEY: ${{ secrets.ALPHAVANTAGEAPIKEY }}
         #   MONGOURI: "mongodb://localhost:27017"
+        #   REDISSTORESECRET: ${{ secrets.REDISSTORESECRET }}
 
   ui_tests:
     runs-on: ubuntu-latest
