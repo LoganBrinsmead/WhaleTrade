@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import { getStockLookup } from '../services/api/whaletradApi';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { Link } from '@mui/material';
 
 export default function SearchResults(props) {
     const { search_query } = props;
