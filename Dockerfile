@@ -2,10 +2,12 @@ FROM node:18-alpine
 
 # install mongodb
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.6/main' >> /etc/apk/repositories
-RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.6/community' >> /etc/apk/repositories
+RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.6/community' >> /etc/apk/repositories 
 RUN apk update
 RUN apk add mongodb
 RUN apk add mongodb-tools
+# install redis
+RUN apk add redis
 
 # install nodejs process manager
 RUN npm install -g forever
@@ -17,6 +19,7 @@ ENV MONGOURI=mongodb://localhost:27017
 ENV PORT=80
 ENV FINNHUBAPIKEY=none
 ENV ALPHAVANTAGEAPIKEY=none
+ENV REDISSESSIONSTORE=secret
 
 EXPOSE ${PORT}
 EXPOSE 443
