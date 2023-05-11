@@ -27,7 +27,7 @@ jobs:
           npm test
         working-directory: ./api
         env:
-          REDISSTORESECRET: ${{ secrets.REDISSTORESECRET }}
+          REDISSTORESECRET: "testkey"
           MONGOURI: "mongodb://localhost:27017"
         
 
