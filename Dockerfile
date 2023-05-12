@@ -32,7 +32,7 @@ COPY mongo_config.yml /server/mongo_config.yml
 COPY mongodb_service /server/mongodb_service
 COPY redis_service /server/redis_service
 COPY dist/ /server/
-
+COPY run.sh /server/run.sh
 # start database
 RUN mkdir -p /data/db
 VOLUME /data/db
@@ -41,10 +41,9 @@ VOLUME /data/db
 # start mongodb service
 #RUN rc-service /server/mongodb_service start
 #RUN rc-service /server/redis_service start
-RUN nohup /usr/bin/redis-server &
-RUN nohup mongod -f &
-
+RUN chmod +x run.sh
 # use pm to run server - needs to be configured for logging
 # run forever in foreground
-CMD ["forever", "whaletrade.bundle.js"]
+#CMD ["forever", "whaletrade.bundle.js"]
+CMD ["sh", "/server/run.sh"]
 #ENTRYPOINT ["/bin/sh"]
