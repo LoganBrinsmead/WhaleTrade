@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+api/node_modules
+api/.env
+front-end/node_modules
+node_modules
+=======
 */node_modules
 .env
 */.env
