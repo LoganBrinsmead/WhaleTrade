@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, Fragment } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
@@ -9,10 +9,12 @@ import Logo from "./Logo";
 
 //import API from './API_Interface/API_Interface'
 
+/*
 const logoStyle = {
   position: "absolute",
   margin: "10px",
 };
+*/
 
 function Login({ setUser }) {
   const [userName, setuserName] = useState(""); //userName

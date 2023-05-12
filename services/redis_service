@@ -3,6 +3,6 @@
 depend(){
     need net
 }
-command="usr/bin/redis"
+command="usr/bin/redis-server"
 command_user="root:root"
 pidfile="/run/redis/pid"
