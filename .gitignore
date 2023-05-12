@@ -1,12 +1,11 @@
-<<<<<<< HEAD
+*/node_modules
 api/node_modules
 api/.env
 front-end/node_modules
 node_modules
-=======
-*/node_modules
+*node_modules
 .env
-*/.env
+*.env
 dist
 ci/utils/__pycache__
 .idea

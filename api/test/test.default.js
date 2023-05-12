@@ -4,6 +4,9 @@ let chai = require('chai');
 let chaiHttp = require('chai-http');
 let server = require('../server');
 let should = chai.should();
+let redis = require('redis-mock');
+
+let client = redis.createClient();
 
 
 chai.use(chaiHttp);

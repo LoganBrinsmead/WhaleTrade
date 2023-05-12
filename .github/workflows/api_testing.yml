@@ -26,11 +26,10 @@ jobs:
           npm install
           npm test
         working-directory: ./api
-        # env:
-        #   DEVELOPMENT: true
-        #   FINNHUBAPIKEY: ${{ secrets.FINNHUBAPIKEY }}
-        #   ALPHAVANTAGEAPIKEY: ${{ secrets.ALPHAVANTAGEAPIKEY }}
-        #   MONGOURI: "mongodb://localhost:27017"
+        env:
+          REDISSTORESECRET: "testkey"
+          MONGOURI: "mongodb://localhost:27017"
+        
 
   ui_tests:
     runs-on: ubuntu-latest
