@@ -33,7 +33,9 @@ COPY dist/ /server/
 RUN mkdir -p /data/db
 VOLUME /data/db
 RUN nohup mongod -f /server/mongo_config.yml &
+RUN nohup /usr/bin/redis-server &
 
 # use pm to run server - needs to be configured for logging
 # run forever in foreground
 CMD ["forever", "whaletrade.bundle.js"]
+#ENTRYPOINT ["/bin/sh"]
