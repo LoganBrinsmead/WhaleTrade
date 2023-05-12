@@ -1,0 +1,8 @@
+#!/sbin/openrc-run
+
+depend(){
+    need net
+}
+command="usr/bin/redis"
+command_user="root:root"
+pidfile="/run/redis/pid"

@@ -20,6 +20,8 @@ async def pipeline_v2():
         dockerfile = src.file("Dockerfile")
         # database config
         mongodb_config = src.file("./database/mongo_config.yml")
+        mongodb_service = src.file("./services/mongodb_service")
+        redis_service = src.file("./services/redis_service")
 
         # run react build script
         web = (
@@ -55,6 +57,8 @@ async def pipeline_v2():
             client.container()
                 .with_directory("/build/dist", dist_src)
                 .with_file("/build/mongo_config.yml", mongodb_config)
+                .with_file("/build/mongodb_service", mongodb_service) 
+                .with_file("/build/redis_service", redis_service)
                 .with_file("/build/Dockerfile", dockerfile)
                 .with_workdir("/build")
         )

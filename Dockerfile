@@ -4,6 +4,8 @@ FROM node:18-alpine
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.6/main' >> /etc/apk/repositories
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.6/community' >> /etc/apk/repositories 
 RUN apk update
+# 
+RUN apk add openrc
 RUN apk add mongodb
 RUN apk add mongodb-tools
 # install redis
@@ -27,13 +29,18 @@ EXPOSE 443
 # Copy bundle and static build files
 WORKDIR /server
 COPY mongo_config.yml /server/mongo_config.yml
+COPY mongodb_service /server/mongodb_service
+COPY redis_service /server/redis_service
 COPY dist/ /server/
 
 # start database
 RUN mkdir -p /data/db
 VOLUME /data/db
-RUN nohup mongod -f /server/mongo_config.yml &
-RUN nohup /usr/bin/redis-server &
+
+RUN rc-update
+# start mongodb service
+RUN rc-service mongodb_service start
+RUN rc-service redis_service start
 
 # use pm to run server - needs to be configured for logging
 # run forever in foreground
