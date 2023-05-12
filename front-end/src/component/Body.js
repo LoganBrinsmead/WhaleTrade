@@ -1,63 +1,52 @@
-import React from "react";
-import Box from '@mui/material/Box'
+import { useState, useEffect } from "react";
+import Box from "@mui/material/Box";
 import Sidebar from "./SideBar";
-import Trending from './Trending';
+import CandlestickChart from "../charts/CandlestickChart";
 
 const bodyStyle = {
   backgroundColor: "white",
-  width: '100%',
-  height: '100%',
-  display: 'flex',
-  position: 'relative'
+  width: "100%",
+  height: "100%",
+  display: "flex",
+  position: "relative",
 };
 
 const chartStyle = {
-  width: '80%',
+  width: "80%",
   position: "relative",
-  left: '1',
+  left: "1",
   border: "1px solid white",
- // height: 400
+  // height: 400
 };
 
 const sideBarStyle = {
-  top : '120px',
-  width: '20%',
+  width: "20%",
   position: "relative",
 };
 
+export default function Body() {
+  const [selectedItem, setSelectedItem] = useState("AAPL");
+
+  return (
+    <Box sx={bodyStyle}>
+      <Box sx={sideBarStyle}>
+        <Sidebar  
+            props ={{
+              selectedItem: selectedItem,
+              setSelectedItem: setSelectedItem
+            }}
+        />
+      </Box>
 
 
-
-
-export default function Body(){
-  return(
-    
-    <Box sx={bodyStyle}>    
-
-    <Box sx = {sideBarStyle}>
-        <Sidebar />
+      <Box sx = {chartStyle}>
+        <CandlestickChart 
+          type="candlestick"
+          height={650}
+          stockSymbol="AAPL"
+        />
+      </Box>
+      
     </Box>
-
-      
-       
-    <Box sx={chartStyle}>
-      <Trending symbolList={['AAPL', 'GOOG', 'MSFT', 'AMZN']} />
-    </Box>  
-      
-      
-    
-    </Box>
-  )
+  );
 }
-
-
-
-
-
-
-
-
-
-
-
-

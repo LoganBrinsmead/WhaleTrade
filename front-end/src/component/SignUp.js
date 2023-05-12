@@ -181,6 +181,7 @@ export default function SignUp() {
                     label="Password"
                     placeholder=""
                     value={password}
+                    type="password"
                     onChange={handlePasswordInputChange}
                     style = {{width: 300}}
                 />
@@ -194,6 +195,7 @@ export default function SignUp() {
                     id="outlined-error-helper-text"
                     label="Confirm Password"
                     placeholder=""
+                    type="password"
                     value={passConfirm}
                     onChange={handleRepeatPasswordInputChange}
                     style = {{width: 300}}
