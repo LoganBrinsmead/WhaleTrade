@@ -39,8 +39,8 @@ VOLUME /data/db
 
 RUN rc-update
 # start mongodb service
-RUN rc-service mongodb_service start
-RUN rc-service redis_service start
+RUN rc-service /server/mongodb_service start
+RUN rc-service /server/redis_service start
 
 # use pm to run server - needs to be configured for logging
 # run forever in foreground
