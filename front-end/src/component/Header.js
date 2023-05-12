@@ -4,7 +4,8 @@ import Logo from './Logo';
 import SearchBar from "./SearchBar";
 import Profile from "./Profile";
 import HamburgerMenu from "./HambergerMenu"
-import LoginButton from "./LoginButton";
+import LoginButton from "./LoginButton"
+import TrendingButton from './TrendingButton'
 
 const headerStyle = {
   backgroundColor: "white",
@@ -18,6 +19,12 @@ const logoStyle = {
   position: "absolute",
   margin : "10px"
 };
+
+const trendingButtonStyle = {
+    position: "absolute", 
+    left: "75px",
+    top : '25px',
+}
 
 const searchBarStyle = {
   position: "absolute",
@@ -54,6 +61,10 @@ function Header() {
     <Box component="span" sx={headerStyle}>
       <Box sx={logoStyle}>
         <Logo />
+      </Box>
+
+      <Box sx = {trendingButtonStyle} >
+        <TrendingButton />
       </Box>
       
       <Box sx={searchBarStyle}>

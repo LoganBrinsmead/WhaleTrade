@@ -5,9 +5,13 @@ import CandlestickChart from './charts/CandlestickChart';
 import Login from './component/Login';
 import Body from './component/Body';
 import SignUp from './component/SignUp';
+import TrendingPage from './component/TrendingPage';
 import { useEffect, useState, useContext } from 'react';
 import { getStockQuote } from './services/api/whaletradApi';
 import { GlobalContext, GlobalProvider } from './context/GlobalContext';
+
+
+
 
 function Home() {
   return (
@@ -73,6 +77,7 @@ function App() {
         <Route path='/signUp' element={<SignUp/>} />
         <Route path='/summary/:symbol' element={<SummaryPage />} />
         <Route path='/chart/:symbol' element={<ChartPage />} />
+        <Route path='/trending' element = {<TrendingPage />}/>
       </Routes>
     </Router>
   );

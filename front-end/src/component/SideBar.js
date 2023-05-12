@@ -1,24 +1,53 @@
-import React from 'react';
-import { Drawer, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import InboxIcon from '@mui/icons-material/Inbox';
-import MailIcon from '@mui/icons-material/Mail';
+import React, { useState } from 'react';
+import { Box, List, ListItem, ListItemText } from '@mui/material';
 
-function Sidebar() {
+function Sidebar({ props }) {
+    
+  const { selectedItem, setSelectedItem } = props;
+
+  const stockNames = [
+    'AAPL',
+    'GOOGL',
+    'AMZN',
+    'MSFT',
+    'FB',
+    'TSLA',
+    'NFLX',
+    'NVDA',
+    'AMD',
+    'INTC'
+  ];
+
+
+
+
+  const handleListItemClick = (stockName) => {
+    console.log(stockName);
+    setSelectedItem(stockName);
+  };
+
   return (
-    <Drawer
-      variant="permanent"
-      anchor="left"
-      sx={{ marginTop: '120px' }}  // This is the style you add to make the component 120px from top
-    >
+    <Box variant="permanent" anchor="left" width={200}>
       <List>
-        {['Inbox', 'Outbox'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
+        {stockNames.map((stockName, index) => (
+          <ListItem
+            key={stockName}
+            button
+            selected={selectedItem === index}
+            onClick={() => handleListItemClick(stockName)}
+            sx={{
+              border: '1px solid black',
+              paddingLeft: '40px',
+              '&:hover': {
+                backgroundColor: '#e1f5fe', // light blue color
+              },
+            }}
+          >
+            <ListItemText primary={stockName} />
           </ListItem>
         ))}
       </List>
-    </Drawer>
+    </Box>
   );
 }
 
