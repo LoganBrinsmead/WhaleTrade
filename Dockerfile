@@ -44,6 +44,4 @@ VOLUME /data/db
 RUN chmod +x run.sh
 # use pm to run server - needs to be configured for logging
 # run forever in foreground
-#CMD ["forever", "whaletrade.bundle.js"]
 CMD ["sh", "/server/run.sh"]
-#ENTRYPOINT ["/bin/sh"]
