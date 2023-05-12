@@ -3,8 +3,7 @@
 depend(){
     need net
 }
+name="mongodb-sevice"
 command="mongod"
 command_args="-f /server/mongo_config.yml"
-command_user="root:root"
-pidfile="/run/mongodb/pid"
 
