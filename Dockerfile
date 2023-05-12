@@ -41,10 +41,10 @@ VOLUME /data/db
 # start mongodb service
 #RUN rc-service /server/mongodb_service start
 #RUN rc-service /server/redis_service start
-RUN nohup mongod -f /server/mongo_config.yml &
 RUN nohup /usr/bin/redis-server &
+RUN nohup mongod -f &
 
 # use pm to run server - needs to be configured for logging
 # run forever in foreground
-#CMD ["forever", "whaletrade.bundle.js"]
-ENTRYPOINT ["/bin/sh"]
+CMD ["forever", "whaletrade.bundle.js"]
+#ENTRYPOINT ["/bin/sh"]
