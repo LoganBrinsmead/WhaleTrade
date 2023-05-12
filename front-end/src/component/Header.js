@@ -1,15 +1,11 @@
-import React from "react";
-import Box from '@mui/material/Box'
-import Logo from './Logo'
+import React, { useState } from "react";
+import Box from '@mui/material/Box';
+import Logo from './Logo';
 import SearchBar from "./SearchBar";
 import Profile from "./Profile";
 import HamburgerMenu from "./HambergerMenu"
-import Login from "./Login";
-import LoginButton from "./LoginButton";
-
-
-
-
+import LoginButton from "./LoginButton"
+import TrendingButton from './TrendingButton'
 
 const headerStyle = {
   backgroundColor: "white",
@@ -19,83 +15,71 @@ const headerStyle = {
   position: 'relative'
 };
 
-
-
 const logoStyle = {
   position: "absolute",
   margin : "10px"
-}
+};
 
+const trendingButtonStyle = {
+    position: "absolute", 
+    left: "75px",
+    top : '25px',
+}
 
 const searchBarStyle = {
   position: "absolute",
   left: "50%",
   transform: "translateX(-50%)",
-
 };
-
 
 const profileStyle = {
   position: "absolute",
   right: "80px",
   top : '10px',
-}
+};
 
+const buttonStyle = {
+  position: "absolute", 
+  right: "75px",
+  top : '10px',
+};
 
-const loginStyle = {
-    position: "absolute",
-    right: "100px",
-    top: '1'
- 
-}
-
-
-
-const hambutgerStyle = {
+const hamburgerStyle = {
   position: "absolute", 
   right: "5px",
   top : '6px',
-}
+};
 
+function Header() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-const ButtonStyle = {
-    position: "absolute", 
-    right: "75px",
-    top : '10px',
-}
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
 
-
-
-function Header()  {
   return (
-    <Box component="span" sx = {headerStyle}>
-      <Box sx = {logoStyle}>
+    <Box component="span" sx={headerStyle}>
+      <Box sx={logoStyle}>
         <Logo />
       </Box>
+
+      <Box sx = {trendingButtonStyle} >
+        <TrendingButton />
+      </Box>
       
-      <Box sx = {searchBarStyle}>
+      <Box sx={searchBarStyle}>
         <SearchBar />
       </Box>
 
-      <Box sx = {profileStyle}>
-       
-      </Box>
-
-      <Box sx = {ButtonStyle}>
-        <LoginButton />
+      <Box sx={buttonStyle}>
+        {isLoggedIn ? <Profile /> : <LoginButton onLogin={handleLogin} />}
       </Box>
       
-      <Box sx = {hambutgerStyle}>
+      <Box sx={hamburgerStyle}>
         <HamburgerMenu />
       </Box>
-
-  
-
-    
     </Box>
-  
-)
+  );
 }
 
-
-export default Header
+export default Header;
